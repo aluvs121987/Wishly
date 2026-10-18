@@ -1,0 +1,46 @@
+PASS EN: 700 per person parsed
+PASS EN: 2 people parsed
+PASS EN: Maadi parsed
+PASS EN: café kind parsed
+PASS EN: pet accompanying parsed
+PASS 700 × 2 = 1,400 total
+PASS AR + Arabic digits: 700 per person × 2 = 1,400
+PASS AR: المعادي → Maadi
+PASS AR: كلب → dog accompanying
+PASS AR: كافيه → café
+PASS headcount, hours and year are not read as budget
+PASS 'under' = hard cap
+PASS 'total' basis recognised
+PASS structured area wins over text area
+PASS structured per-person budget wins
+PASS conflicts are reported
+PASS owning a pet does not force pet-friendly
+PASS 'without my dog' turns accompanying off
+PASS Maadi pet-friendly café: no confirmed match from demo data
+PASS Maadi pet-friendly café: nothing outside Maadi offered as Ask
+PASS Maadi pet-friendly café: non-cafés never appear
+PASS Zamalek demo café with a demo 'pets allowed' claim → Ask, not confirmed
+PASS verified Maadi pet café with evidence → confirmed
+PASS its group cost is 300 × 2 = 600
+PASS dog-only place is unsuitable for a cat
+PASS ramp alone is not enough (interior, level, toilet unknown)
+PASS all wheelchair facts true + evidence → confirmed
+PASS interior not usable → excluded
+PASS upper floor without lift → excluded
+PASS all true but demo record → needs confirmation
+PASS demo 'steps at entrance' → excluded (a no is respected)
+PASS wheelchair search over demo data: no confirmed results
+PASS felucca with steps is excluded for wheelchair users
+PASS radius search uses only venue coordinates (demo has none)
+PASS place outside radius is excluded, offered only as expansion
+PASS excluded place never appears
+PASS restored place is eligible again
+PASS budget applied before top results (nothing over 300 total)
+PASS fixed-price items are not multiplied
+PASS missing info lowers the score and is listed
+PASS low participant ratings lower the group score
+PASS Cairo winter time (UTC+2): 2026-12-01 17:00 → 15:00Z
+PASS Cairo summer time (UTC+3): 2026-07-01 17:00 → 14:00Z
+PASS round trip back to the Cairo input value
+
+44 passed, 0 failed

@@ -1,513 +1,255 @@
-<!DOCTYPE html><html  lang="en"><head><title data-rh="true"></title><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><style id="expo-reset">#root,body,html{height:100%}body{overflow:hidden}#root{display:flex}</style><style id="react-native-stylesheet">[stylesheet-group="0"]{}
-body{margin:0;}
-button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
-html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0);}
-input::-webkit-search-cancel-button,input::-webkit-search-decoration,input::-webkit-search-results-button,input::-webkit-search-results-decoration{display:none;}
-[stylesheet-group="1"]{}
-.css-11aywtz{-moz-appearance:textfield;-webkit-appearance:none;background-color:rgba(0,0,0,0.00);border-bottom-left-radius:0px;border-bottom-right-radius:0px;border-top-left-radius:0px;border-top-right-radius:0px;border:0 solid black;box-sizing:border-box;font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;margin:0px;padding:0px;resize:none;}
-.css-146c3p1{background-color:rgba(0,0,0,0.00);border:0 solid black;box-sizing:border-box;color:rgba(0,0,0,1.00);display:inline;font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;list-style:none;margin:0px;padding:0px;position:relative;text-align:start;text-decoration:none;white-space:pre-wrap;word-wrap:break-word;}
-.css-1jxf684{background-color:rgba(0,0,0,0.00);border:0 solid black;box-sizing:border-box;color:inherit;display:inline;font:inherit;list-style:none;margin:0px;padding:0px;position:relative;text-align:inherit;text-decoration:none;white-space:inherit;word-wrap:break-word;}
-.css-9pa8cd{bottom:0px;height:100%;left:0px;opacity:0;position:absolute;right:0px;top:0px;width:100%;z-index:-1;}
-.css-g5y9jx{align-content:flex-start;align-items:stretch;background-color:rgba(0,0,0,0.00);border:0 solid black;box-sizing:border-box;display:flex;flex-basis:auto;flex-direction:column;flex-shrink:0;list-style:none;margin:0px;min-height:0px;min-width:0px;padding:0px;position:relative;text-decoration:none;z-index:0;}
-[stylesheet-group="2"]{}
-.r-11mg6pl{border-bottom-color:rgba(255,255,255,1.00);border-left-color:rgba(255,255,255,1.00);border-right-color:rgba(255,255,255,1.00);border-top-color:rgba(255,255,255,1.00);}
-.r-13awgt0{flex:1;}
-.r-16uyjmq{border-bottom-left-radius:22px;border-bottom-right-radius:22px;border-top-left-radius:22px;border-top-right-radius:22px;}
-.r-1867qdf{border-bottom-left-radius:16px;border-bottom-right-radius:16px;border-top-left-radius:16px;border-top-right-radius:16px;}
-.r-1a976y8{border-bottom-left-radius:19px;border-bottom-right-radius:19px;border-top-left-radius:19px;border-top-right-radius:19px;}
-.r-1awa8pu{border-bottom-color:rgba(101,119,134,1.00);border-left-color:rgba(101,119,134,1.00);border-right-color:rgba(101,119,134,1.00);border-top-color:rgba(101,119,134,1.00);}
-.r-1bq2mok{margin:3px;}
-.r-1d4xg89{border-bottom-color:rgba(170,184,194,1.00);border-left-color:rgba(170,184,194,1.00);border-right-color:rgba(170,184,194,1.00);border-top-color:rgba(170,184,194,1.00);}
-.r-1dedoh8{border-bottom-left-radius:9px;border-bottom-right-radius:9px;border-top-left-radius:9px;border-top-right-radius:9px;}
-.r-1dzdj1l{border-bottom-left-radius:10px;border-bottom-right-radius:10px;border-top-left-radius:10px;border-top-right-radius:10px;}
-.r-1f0042m{border-bottom-left-radius:5px;border-bottom-right-radius:5px;border-top-left-radius:5px;border-top-right-radius:5px;}
-.r-1fuqb1j{border-bottom-left-radius:24px;border-bottom-right-radius:24px;border-top-left-radius:24px;border-top-right-radius:24px;}
-.r-1gb1gic{border-bottom-left-radius:23px;border-bottom-right-radius:23px;border-top-left-radius:23px;border-top-right-radius:23px;}
-.r-1j16mh1{border-bottom-left-radius:100%;border-bottom-right-radius:100%;border-top-left-radius:100%;border-top-right-radius:100%;}
-.r-1jkafct{border-bottom-left-radius:2px;border-bottom-right-radius:2px;border-top-left-radius:2px;border-top-right-radius:2px;}
-.r-1jyn79y{border-bottom-color:rgba(0,150,136,1.00);border-left-color:rgba(0,150,136,1.00);border-right-color:rgba(0,150,136,1.00);border-top-color:rgba(0,150,136,1.00);}
-.r-1mxhqmb{border-bottom-left-radius:11px;border-bottom-right-radius:11px;border-top-left-radius:11px;border-top-right-radius:11px;}
-.r-1oqcu8e{padding:15px;}
-.r-1pcd2l5{padding:20px;}
-.r-1phboty{border-bottom-style:solid;border-left-style:solid;border-right-style:solid;border-top-style:solid;}
-.r-1px6drs{border-bottom-left-radius:7px;border-bottom-right-radius:7px;border-top-left-radius:7px;border-top-right-radius:7px;}
-.r-1q9bdsx{border-bottom-left-radius:12px;border-bottom-right-radius:12px;border-top-left-radius:12px;border-top-right-radius:12px;}
-.r-1qsk4np{overflow-x:clip;overflow-y:clip;}
-.r-1rvyss1{border-bottom-color:rgba(255,255,255,0.20);border-left-color:rgba(255,255,255,0.20);border-right-color:rgba(255,255,255,0.20);border-top-color:rgba(255,255,255,0.20);}
-.r-1slz7xr{padding:14px;}
-.r-1sp51qo{padding:10px;}
-.r-1txcine{border-bottom-left-radius:13px;border-bottom-right-radius:13px;border-top-left-radius:13px;border-top-right-radius:13px;}
-.r-1udh08x{overflow-x:hidden;overflow-y:hidden;}
-.r-1uu6nss{padding:5px;}
-.r-1xfd6ze{border-bottom-left-radius:8px;border-bottom-right-radius:8px;border-top-left-radius:8px;border-top-right-radius:8px;}
-.r-1ylenci{border-bottom-left-radius:15px;border-bottom-right-radius:15px;border-top-left-radius:15px;border-top-right-radius:15px;}
-.r-4a18lf{border-bottom-color:rgba(255,0,0,1.00);border-left-color:rgba(255,0,0,1.00);border-right-color:rgba(255,0,0,1.00);border-top-color:rgba(255,0,0,1.00);}
-.r-5t7aoe{border-bottom-left-radius:17px;border-bottom-right-radius:17px;border-top-left-radius:17px;border-top-right-radius:17px;}
-.r-60ke3l{border-bottom-color:rgba(0,128,0,1.00);border-left-color:rgba(0,128,0,1.00);border-right-color:rgba(0,128,0,1.00);border-top-color:rgba(0,128,0,1.00);}
-.r-6ncur5{border-bottom-left-radius:18px;border-bottom-right-radius:18px;border-top-left-radius:18px;border-top-right-radius:18px;}
-.r-6t2glc{border-bottom-left-radius:40px;border-bottom-right-radius:40px;border-top-left-radius:40px;border-top-right-radius:40px;}
-.r-9x6qib{border-bottom-color:rgba(204,214,221,1.00);border-left-color:rgba(204,214,221,1.00);border-right-color:rgba(204,214,221,1.00);border-top-color:rgba(204,214,221,1.00);}
-.r-crgep1{margin:0px;}
-.r-d045u9{border-bottom-width:2px;border-left-width:2px;border-right-width:2px;border-top-width:2px;}
-.r-d23pfw{padding:24px;}
-.r-edyy15{padding:8px;}
-.r-f0mb9a{border-bottom-color:rgba(221,229,227,1.00);border-left-color:rgba(221,229,227,1.00);border-right-color:rgba(221,229,227,1.00);border-top-color:rgba(221,229,227,1.00);}
-.r-fx7oqy{border-bottom-color:rgba(0,0,255,1.00);border-left-color:rgba(0,0,255,1.00);border-right-color:rgba(0,0,255,1.00);border-top-color:rgba(0,0,255,1.00);}
-.r-kdyh1x{border-bottom-left-radius:6px;border-bottom-right-radius:6px;border-top-left-radius:6px;border-top-right-radius:6px;}
-.r-kq9wsh{padding:13px;}
-.r-krxsd3{display:-webkit-box;}
-.r-nsbfu8{padding:16px;}
-.r-q81ovl{padding:11px;}
-.r-rs99b7{border-bottom-width:1px;border-left-width:1px;border-right-width:1px;border-top-width:1px;}
-.r-t23y2h{border-bottom-left-radius:14px;border-bottom-right-radius:14px;border-top-left-radius:14px;border-top-right-radius:14px;}
-.r-t60dpp{padding:0px;}
-.r-tuq35u{padding:4px;}
-.r-wg31gx{border-bottom-color:rgba(49,53,56,1.00);border-left-color:rgba(49,53,56,1.00);border-right-color:rgba(49,53,56,1.00);border-top-color:rgba(49,53,56,1.00);}
-.r-whuqzp{padding:18px;}
-.r-xoduu5{display:inline-flex;}
-.r-xyw6el{padding:12px;}
-.r-y47klf{border-bottom-left-radius:20px;border-bottom-right-radius:20px;border-top-left-radius:20px;border-top-right-radius:20px;}
-.r-ywje51{margin:auto;}
-.r-z2wwpe{border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-top-left-radius:4px;border-top-right-radius:4px;}
-[stylesheet-group="2.1"]{}
-.r-11f147o{padding-bottom:8px;padding-top:8px;}
-.r-11gswi8{padding-left:3px;padding-right:3px;}
-.r-17q4wm6{margin-left:5px;margin-right:5px;}
-.r-184id4b{margin-bottom:12px;margin-top:12px;}
-.r-1d7mnkm{padding-bottom:15px;padding-top:15px;}
-.r-1e084wi{padding-left:0px;padding-right:0px;}
-.r-1ezpcd1{padding-left:9px;padding-right:9px;}
-.r-1m1l54l{padding-left:11px;padding-right:11px;}
-.r-1mmae3n{padding-bottom:12px;padding-top:12px;}
-.r-1ntr0p{padding-left:5px;padding-right:5px;}
-.r-1rsorjc{padding-left:36px;padding-right:36px;}
-.r-1s5swlz{padding-bottom:9px;padding-top:9px;}
-.r-1ubuhtd{padding-left:10px;padding-right:10px;}
-.r-1yd117h{padding-bottom:7px;padding-top:7px;}
-.r-3o4zer{padding-left:12px;padding-right:12px;}
-.r-3pj75a{padding-left:16px;padding-right:16px;}
-.r-c6ipad{padding-left:7px;padding-right:7px;}
-.r-cnw61z{padding-bottom:4px;padding-top:4px;}
-.r-cxgwc0{padding-left:24px;padding-right:24px;}
-.r-f8sm7e{margin-left:auto;margin-right:auto;}
-.r-gu64tb{padding-left:14px;padding-right:14px;}
-.r-is05cd{padding-left:8px;padding-right:8px;}
-.r-jdiy1a{margin-left:11px;margin-right:11px;}
-.r-jusfrs{margin-left:12px;margin-right:12px;}
-.r-lzsi8w{padding-left:2px;padding-right:2px;}
-.r-n5f61p{margin-bottom:3px;margin-top:3px;}
-.r-n7gxbd{padding-left:4px;padding-right:4px;}
-.r-rehuqn{padding-bottom:5px;padding-top:5px;}
-.r-u9wvl5{padding-left:20px;padding-right:20px;}
-.r-ugi1tw{padding-left:5%;padding-right:5%;}
-.r-vuvdlw{padding-bottom:6px;padding-top:6px;}
-.r-w7s2jr{padding-bottom:16px;padding-top:16px;}
-.r-ytbthy{padding-bottom:10px;padding-top:10px;}
-.r-ywh0we{padding-bottom:13px;padding-top:13px;}
-[stylesheet-group="2.2"]{}
-.r-10s2tm5{left:0%;}
-.r-16o8guy{right:100%;}
-.r-1a11zyx{margin-right:12px;}
-.r-1cwvpvk{margin-left:12px;}
-.r-1e97lx8{margin-right:3px;}
-.r-1euzeng{padding-left:24px;}
-.r-1g4tz6n{margin-right:-14.5px;}
-.r-1h31txp{padding-right:16px;}
-.r-1lhn9r{margin-left:-14.5px;}
-.r-1sqnqi2{margin-left:3px;}
-.r-1vl2501{padding-right:24px;}
-.r-9mo606{margin-right:10px;}
-.r-c59us2{left:-3px;}
-.r-dqe1q{right:0%;}
-.r-qb41rp{margin-right:5px;}
-.r-rci37q{left:100%;}
-.r-uhung1{margin-left:10px;}
-.r-vpmibe{right:-3px;}
-.r-w67my2{padding-left:16px;}
-.r-wizibn{margin-left:5px;}
-[stylesheet-group="3"]{}
-.r-105ug2t{pointer-events:auto!important;}
-.r-109y4c4{height:1px;}
-.r-10b5y5f{letter-spacing:1.4px;}
-.r-10ptun7{height:16px;}
-.r-10v3vxq{transform:scaleX(-1);}
-.r-10x49cs{font-size:10px;}
-.r-10xqauy{padding-top:env(safe-area-inset-top);}
-.r-10yl4k{line-height:21px;}
-.r-11c0sde{margin-top:24px;}
-.r-11dcagt{background-color:rgba(255,255,255,0.72);}
-.r-11j9u27{visibility:hidden;}
-.r-11mpjr4{background-color:rgba(223,223,223,1.00);}
-.r-11rk87y{padding-bottom:32px;}
-.r-11udlyb{background-color:rgba(0,150,136,1.00);}
-.r-11ujhjy{padding-bottom:22px;}
-.r-11v9fek{min-width:180px;}
-.r-11yh6sk{overflow-x:hidden;}
-.r-12f6czt{top:17px;}
-.r-12vffkv>* {pointer-events:auto;}
-.r-12vffkv{pointer-events:none!important;}
-.r-131xog0{width:38px;}
-.r-135wba7{line-height:24px;}
-.r-13aq9py{animation-name:r-1iq689l;}
-.r-13hce6t{margin-left:4px;}
-.r-13qz1uu{width:100%;}
-.r-13tjlyg{transition-duration:0.1s;}
-.r-1444osr{margin-top:18px;}
-.r-1472mwg{height:24px;}
-.r-14gqq1x{margin-top:4px;}
-.r-14lw9ot{background-color:rgba(255,255,255,1.00);}
-.r-14sbq61{background-color:rgba(33,150,243,1.00);}
-.r-14yzgew{line-height:18px;}
-.r-150rngu{-webkit-overflow-scrolling:touch;}
-.r-156q2ks{margin-top:10px;}
-.r-15d164r{margin-bottom:10px;}
-.r-163w2kr{background-color:rgba(248,250,248,1.00);}
-.r-16krg75{letter-spacing:-1px;}
-.r-16y2uox{flex-grow:1;}
-.r-173mn98{align-self:flex-end;}
-.r-173mzie{transform:scaleY(-1);}
-.r-1777fci{justify-content:center;}
-.r-17b3b9k{height:33px;}
-.r-17bb2tj{animation-duration:0.75s;}
-.r-17leim2{background-repeat:repeat;}
-.r-17s6mgv{justify-content:flex-end;}
-.r-17tb59b{opacity:0.7;}
-.r-17tloay{opacity:0.6;}
-.r-17u3ijr{background-color:rgba(155,161,166,0.27);}
-.r-184en5c{z-index:1;}
-.r-18nhz7w{top:-3px;}
-.r-18u1ve8{color:rgba(255,255,255,0.40);}
-.r-18u37iz{flex-direction:row;}
-.r-199wky7{width:30px;}
-.r-19oahor{font-size:64px;}
-.r-19qrga8{margin-top:3px;}
-.r-19r33im{letter-spacing:1.2px;}
-.r-19tjxh9{width:26px;}
-.r-19wmn03{width:20px;}
-.r-19yat4t{padding-bottom:15px;}
-.r-19z077z{touch-action:none;}
-.r-1a2p6p6{-webkit-text-decoration-style:solid;text-decoration-style:solid;}
-.r-1a8msfu{height:38px;}
-.r-1abnn5w{animation-play-state:paused;}
-.r-1acpoxo{width:36px;}
-.r-1ah4tor{padding-right:20px;}
-.r-1aiqnjv{font-family:monospace,monospace;}
-.r-1aiv68t{min-height:132px;}
-.r-1anhcgc{left:13px;}
-.r-1aockid{width:40px;}
-.r-1armvtb{font-size:8px;}
-.r-1asr48p{background-color:rgba(21,43,58,1.00);}
-.r-1awozwy{align-items:center;}
-.r-1ay1djp{animation-duration:1s;}
-.r-1b43r93{font-size:14px;}
-.r-1blvdjr{font-size:23px;}
-.r-1bymd8e{margin-top:2px;}
-.r-1c6unfx{forced-color-adjust:none;}
-.r-1c85bru{width:270px;}
-.r-1cmwbt1{gap:8px;}
-.r-1cwl3u0{line-height:16px;}
-.r-1d09ksm{align-items:baseline;}
-.r-1d2f490{left:0px;}
-.r-1d5kdc7{flex-direction:column-reverse;}
-.r-1d7gupr{margin-top:22px;}
-.r-1ddef8g{-webkit-text-decoration-line:underline;text-decoration-line:underline;}
-.r-1dernwh{height:70%;}
-.r-1ei5mc7{cursor:inherit;}
-.r-1el8sus{min-height:72px;}
-.r-1enofrn{font-size:12px;}
-.r-1euycsn{flex-direction:row-reverse;}
-.r-1ewcgjf{box-shadow:0px 1px 3px rgba(0,0,0,0.5);}
-.r-1ey881g{gap:7px;}
-.r-1f529hi{line-height:14px;}
-.r-1ff274t{text-align:right;}
-.r-1ff5aok{right:20px;}
-.r-1ffj0ar{background-color:rgba(0,0,0,0.40);}
-.r-1frbg5s{opacity:0.72;}
-.r-1g7fiml{height:30px;}
-.r-1g80hic{opacity:0.8;}
-.r-1ge9hsw{max-width:960px;}
-.r-1ghxqbu{font-variant:tabular-nums;}
-.r-1gkfh8e{font-size:11px;}
-.r-1h0z5md{justify-content:flex-start;}
-.r-1habvwh{align-items:flex-start;}
-.r-1hfyk0a{padding-left:10px;}
-.r-1hus931{background-color:rgba(255,255,255,0.65);}
-.r-1i10wst{font-size:18px;}
-.r-1i6wzkk{-moz-transition-property:opacity;-webkit-transition-property:opacity;transition-property:opacity;}
-.r-1i71y14{gap:14px;}
-.r-1iezg2v{background-color:rgba(232,133,110,1.00);}
-.r-1ikidpy{letter-spacing:0.5px;}
-.r-1iln25a{word-wrap:normal;}
-.r-1inkyih{font-size:17px;}
-.r-1iusvr4{flex-basis:0px;}
-.r-1iwqwrw{color:rgba(155,176,174,1.00);}
-.r-1j3zfw3{padding-left:11px;}
-.r-1janqcz{width:16px;}
-.r-1jj8364{margin-left:auto;}
-.r-1jkjb{margin-left:8px;}
-.r-1k25im9{height:26px;}
-.r-1kb76zh{margin-right:8px;}
-.r-1kbptd4{width:65%;}
-.r-1kfrs79{font-weight:600;}
-.r-1ki14p2{top:10px;}
-.r-1kihuf0{align-self:center;}
-.r-1kt6imw{line-height:27px;}
-.r-1ld3bg{top:-4px;}
-.r-1ldzwu0{animation-timing-function:linear;}
-.r-1li3vl5{background-color:rgba(255,243,232,1.00);}
-.r-1lin31x{border-top-color:rgba(221,229,227,1.00);}
-.r-1loqt21{cursor:pointer;}
-.r-1ltk5o6{box-shadow:0px 8px 14px rgba(23,52,66,0.12);}
-.r-1lybf8k{letter-spacing:1.1px;}
-.r-1m7hjod{height:31px;}
-.r-1mhb1uw{width:42px;}
-.r-1mlwlqe{flex-basis:auto;}
-.r-1moou3{color:rgba(113,128,138,1.00);}
-.r-1mrlafo{background-position:0;}
-.r-1muvv40{animation-iteration-count:infinite;}
-.r-1niwhzg{background-color:rgba(0,0,0,0.00);}
-.r-1nlw0im{bottom:8px;}
-.r-1no09lo{margin-top:28px;}
-.r-1nxhmzv{margin-bottom:28px;}
-.r-1ny4l3l{outline-style:none;}
-.r-1ocf4r9{scroll-snap-type:y mandatory;}
-.r-1onu96p{border-curve:continuous;}
-.r-1oszu61{align-items:stretch;}
-.r-1otgn73{touch-action:manipulation;}
-.r-1p0dtai{bottom:0px;}
-.r-1pi2tsx{height:100%;}
-.r-1pm8pkb{font-family:Courier;}
-.r-1pyaxff{padding-right:8px;}
-.r-1q67n59{letter-spacing:1.3px;}
-.r-1qd0xha{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
-.r-1qd7xl{top:12px;}
-.r-1qfoi16{padding-right:10px;}
-.r-1qulhi1{animation-name:r-1pzkwqh;}
-.r-1qxgc49{padding-top:15px;}
-.r-1r4fvd0{color:rgba(82,169,255,1.00);}
-.r-1r74h94{left:8px;}
-.r-1r8g8re{height:36px;}
-.r-1ra0lkn{font-size:30px;}
-.r-1rnoaur{overflow-y:auto;}
-.r-1rwfwep{background-color:rgba(241,250,244,1.00);}
-.r-1s2bzr4{margin-top:12px;}
-.r-1s367qj{gap:11px;}
-.r-1sd1n6o{right:13px;}
-.r-1sg8ghl{z-index:1000;}
-.r-1smd7e2{letter-spacing:0.8px;}
-.r-1ssbvtb{gap:12px;}
-.r-1sxrcry{background-size:auto;}
-.r-1t7zxhp{width:9px;}
-.r-1u8kdu{bottom:24px;}
-.r-1udbk01{text-overflow:ellipsis;}
-.r-1ui5ee8{font-size:32px;}
-.r-1ujot5{color:rgba(232,133,110,1.00);}
-.r-1uv9fpa{border-top-left-radius:28px;}
-.r-1vr29t4{font-weight:800;}
-.r-1w6e6rj{flex-wrap:wrap;}
-.r-1wbh5a2{flex-shrink:1;}
-.r-1wipuzn{right:11px;}
-.r-1wmi4lz{color:rgba(184,201,200,1.00);}
-.r-1wtj0ep{justify-content:space-between;}
-.r-1wyyakw{z-index:-1;}
-.r-1wzrnnt{margin-top:16px;}
-.r-1x0uki6{margin-top:20px;}
-.r-1xbve24{height:6px;}
-.r-1xcajam{position:fixed;}
-.r-1xnzce8{-moz-user-select:text;-webkit-user-select:text;user-select:text;}
-.r-1xpsq9i{box-shadow:0px 3px 3px rgba(0, 0, 0, 0.33);}
-.r-1xzupcd{width:13px;}
-.r-1y00bll{gap:9px;}
-.r-1y0e3ya{min-height:190px;}
-.r-1ydbznw{color:rgba(205,232,215,1.00);}
-.r-1yef0xd{animation-name:r-11cv4x;}
-.r-1yvhtrz{width:32px;}
-.r-1yzd4a7{border-bottom-color:rgba(221,229,227,1.00);}
-.r-2eszeu::-webkit-scrollbar{display:none}
-.r-2eszeu{scrollbar-width:none;}
-.r-2ryyhb{padding-bottom:23px;}
-.r-30o5oe{-moz-appearance:none;-ms-appearance:none;-webkit-appearance:none;appearance:none;}
-.r-356f0p{letter-spacing:0.35px;}
-.r-3mc0re{right:8px;}
-.r-3s2u2q{white-space:nowrap;}
-.r-417010{z-index:0;}
-.r-4cht5q{margin-top:29px;}
-.r-4gszlv{background-size:cover;}
-.r-4v7adb{height:5px;}
-.r-578w14{color:rgba(221,229,227,1.00);}
-.r-580adz{gap:5px;}
-.r-5fcqz0{line-height:17px;}
-.r-5kkj8d{border-top-width:1px;}
-.r-5orghg{width:34px;}
-.r-5oul0u{margin-bottom:8px;}
-.r-60vfwk{min-width:1px;}
-.r-633pao>* {pointer-events:none;}
-.r-633pao{pointer-events:none!important;}
-.r-6dt33c{opacity:1;}
-.r-6gpygo{margin-bottom:12px;}
-.r-6oeft0{left:62px;}
-.r-6taxm2:-ms-input-placeholder{color:var(--placeholderTextColor);opacity:1;}
-.r-6taxm2::-moz-placeholder{color:var(--placeholderTextColor);opacity:1;}
-.r-6taxm2::-webkit-input-placeholder{color:var(--placeholderTextColor);opacity:1;}
-.r-6taxm2::placeholder{color:var(--placeholderTextColor);opacity:1;}
-.r-6zzn7w{height:25px;}
-.r-726pan{width:31px;}
-.r-76blku{height:21px;}
-.r-7cikom{font-size:inherit;}
-.r-7ervbz{color:rgba(21,43,58,1.00);}
-.r-7q8q6z{cursor:default;}
-.r-8akbws{-webkit-box-orient:vertical;}
-.r-8ay8q1{letter-spacing:0.1px;}
-.r-92sni{border-top-right-radius:28px;}
-.r-95jzfe{padding-top:16px;}
-.r-97e31f{padding-bottom:env(safe-area-inset-bottom);}
-.r-9aw3ui{gap:4px;}
-.r-9daxd3{animation-duration:250ms;}
-.r-a023e6{font-size:15px;}
-.r-adyw6z{font-size:20px;}
-.r-afbznj{letter-spacing:-0.2px;}
-.r-agouwx{transform:translateZ(0);}
-.r-ah5dr5>* {pointer-events:none;}
-.r-ah5dr5{pointer-events:auto!important;}
-.r-aipl9w{background-color:rgba(45,72,82,1.00);}
-.r-aruset{font-weight:200;}
-.r-b88u0q{font-weight:700;}
-.r-bi4vy9{transform:translateY(100%);}
-.r-bnwqim{position:relative;}
-.r-bt1l66{min-height:20px;}
-.r-bucgz{color:rgba(175,193,192,1.00);}
-.r-buy8e9{overflow-y:hidden;}
-.r-bv2aro{padding-left:env(safe-area-inset-left);}
-.r-bxiggj{width:58px;}
-.r-c540o3{bottom:22px;}
-.r-c68hjy{color:rgba(161,161,161,1.00);}
-.r-chftdy{padding-left:9px;}
-.r-cpa5s6{scroll-snap-align:start;}
-.r-cqee49{color:rgba(0,0,0,1.00);}
-.r-ctyi22{left:20px;}
-.r-d0pm55{margin-bottom:5px;}
-.r-dkge59{background-color:rgba(170,184,194,1.00);}
-.r-dnmrzs{max-width:100%;}
-.r-dr0910{background-color:rgba(252,235,230,1.00);}
-.r-dr54s0{margin-bottom:13px;}
-.r-e34ii6{width:205px;}
-.r-eafdt9{transition-duration:0.15s;}
-.r-ebwn4k{animation-name:r-q67da2;}
-.r-ehq7j7{background-size:contain;}
-.r-eqz5dr{flex-direction:column;}
-.r-eu3ka{height:40px;}
-.r-evnaw{font-size:22px;}
-.r-f2mvze{letter-spacing:-0.8px;}
-.r-f727ji{padding-left:12px;}
-.r-fdjqy7{text-align:left;}
-.r-fxxt2n{line-height:15px;}
-.r-g3mlsw{animation-name:r-t2lo5v;}
-.r-ghxds0{transform:translateY(0%);}
-.r-gjtt5x{margin-top:21px;}
-.r-gtdqiz{position:-webkit-sticky;position:sticky;}
-.r-h0d30l{height:28px;}
-.r-h3s6tt{height:48px;}
-.r-hbpseb{line-height:22px;}
-.r-hdaws3{height:4px;}
-.r-hhvx09{padding-bottom:36px;}
-.r-hxflta{padding-right:env(safe-area-inset-right);}
-.r-i933xg{letter-spacing:1.5px;}
-.r-icoktb{opacity:0.5;}
-.r-icto9i{letter-spacing:-0.5px;}
-.r-ipm5af{top:0px;}
-.r-jwli3a{color:rgba(255,255,255,1.00);}
-.r-k200y{align-self:flex-start;}
-.r-k5y9r7{height:9px;}
-.r-kc8jnq{margin-top:6px;}
-.r-kemksi{background-color:rgba(0,0,0,1.00);}
-.r-kizejy{color:rgba(155,161,166,1.00);}
-.r-knv0ih{margin-top:8px;}
-.r-l71dzp{margin-top:14px;}
-.r-le4sbl{margin-bottom:18px;}
-.r-leqjx2{animation-timing-function:cubic-bezier(0.215, 0.61, 0.355, 1);}
-.r-lltvgl{overflow-x:auto;}
-.r-lpb231{height:168px;}
-.r-lrsllp{width:24px;}
-.r-lrvibr{-moz-user-select:none;-webkit-user-select:none;user-select:none;}
-.r-m0fvr6{width:33px;}
-.r-m611by{padding-top:10px;}
-.r-mabqd8{height:32px;}
-.r-majxgm{font-weight:500;}
-.r-me5xia{height:104px;}
-.r-mfh4gg{scroll-snap-type:x mandatory;}
-.r-mhe3cw{z-index:10;}
-.r-ml9okn{margin-top:17px;}
-.r-mro3nb{background-color:rgba(21,23,24,1.00);}
-.r-n6v787{font-size:13px;}
-.r-nm9kes{letter-spacing:-1.2px;}
-.r-nrbk4l{background-color:rgba(205,232,215,1.00);}
-.r-o4n3w5{width:23px;}
-.r-obd0qt{align-items:flex-end;}
-.r-ojf8lh{gap:6px;}
-.r-orgf3d{opacity:0;}
-.r-pgg991{background-color:rgba(21,43,58,0.32);}
-.r-psjefw{margin-top:9px;}
-.r-q1j0wu{width:25px;}
-.r-q4m81j{text-align:center;}
-.r-qfi6ny{top:30000px;}
-.r-qklmqi{border-bottom-width:1px;}
-.r-qn3fzs{padding-bottom:24px;}
-.r-qqjak8{font-size:9px;}
-.r-qu4leh{min-height:74px;}
-.r-r19jdo{right:15px;}
-.r-r5vmyo{z-index:1002;}
-.r-rabhyy{padding-bottom:28px;}
-.r-rjixqe{line-height:20px;}
-.r-rpnbwx{margin-top:13px;}
-.r-rs94m5{background-image:url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgdmVyc2lvbj0iMS4xIgogICB2aWV3Qm94PSIwIDAgMSAxIgogICBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWluWU1pbiBtZWV0Ij4KICA8cGF0aAogICAgIGQ9Ik0gMC4wNDAzODA1OSwwLjYyNjc3NjcgMC4xNDY0NDY2MSwwLjUyMDcxMDY4IDAuNDI5Mjg5MzIsMC44MDM1NTMzOSAwLjMyMzIyMzMsMC45MDk2MTk0MSB6IE0gMC4yMTcxNTcyOSwwLjgwMzU1MzM5IDAuODUzNTUzMzksMC4xNjcxNTcyOSAwLjk1OTYxOTQxLDAuMjczMjIzMyAwLjMyMzIyMzMsMC45MDk2MTk0MSB6IgogICAgIGlkPSJyZWN0Mzc4MCIKICAgICBzdHlsZT0iZmlsbDojZmZmZmZmO2ZpbGwtb3BhY2l0eToxO3N0cm9rZTpub25lIiAvPgo8L3N2Zz4K");}
-.r-rwqe4o{width:48px;}
-.r-s62m2j{animation-timing-function:cubic-bezier(0.47, 0, 0.745, 0.715);}
-.r-sfbmgh{z-index:9999;}
-.r-sgbo92{opacity:0.9;}
-.r-so7y2g{line-height:64px;}
-.r-tj6fb6{color:rgba(47,107,88,1.00);}
-.r-tsynxw{text-transform:uppercase;}
-.r-ttdzmv{padding-top:12px;}
-.r-u6sd8q{background-repeat:no-repeat;}
-.r-u8s1d{position:absolute;}
-.r-u92y06{background-color:rgba(255,165,0,1.00);}
-.r-uaa2di{gap:10px;}
-.r-ubezar{font-size:16px;}
-.r-ud0q2t{letter-spacing:1px;}
-.r-uho16t{font-size:34px;}
-.r-ur6pnr{height:42px;}
-.r-vacyoi{padding-bottom:64px;}
-.r-van48c{caret-color:transparent;}
-.r-vboj7i{top:-7px;}
-.r-vvn4in{background-position:center;}
-.r-vw2c0b{font-weight:bold;}
-.r-wfqgy4{transition-duration:100ms;}
-.r-ws9h79{left:4px;}
-.r-x11e5r{font-family:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
-.r-x3cy2q{background-size:100% 100%;}
-.r-xn48z5{transform:scale(0.96);}
-.r-xnfwke{line-height:38px;}
-.r-xx3c9p{animation-name:r-imtty0;}
-.r-y7v2we{background-color:rgba(32,36,37,1.00);}
-.r-yie26v{z-index:1001;}
-.r-yval5i{background-color:rgba(221,229,227,1.00);}
-.r-z80fyv{height:20px;}
-.r-zchlnj{right:0px;}
-.r-zqp0mj{background-color:rgba(243,230,218,1.00);}
-.r-zx9znk{height:34px;}
-.r-zye60e{bottom:13px;}
-.r-zz5t5d{font-size:28px;}
-@-webkit-keyframes r-11cv4x{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-@-webkit-keyframes r-1iq689l{0%{transform:translateY(0%);}100%{transform:translateY(100%);}}
-@-webkit-keyframes r-1pzkwqh{0%{transform:translateY(100%);}100%{transform:translateY(0%);}}
-@-webkit-keyframes r-imtty0{0%{opacity:0;}100%{opacity:1;}}
-@-webkit-keyframes r-q67da2{0%{transform:translateX(-100%);}100%{transform:translateX(400%);}}
-@-webkit-keyframes r-t2lo5v{0%{opacity:1;}100%{opacity:0;}}
-@keyframes r-11cv4x{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-@keyframes r-1iq689l{0%{transform:translateY(0%);}100%{transform:translateY(100%);}}
-@keyframes r-1pzkwqh{0%{transform:translateY(100%);}100%{transform:translateY(0%);}}
-@keyframes r-imtty0{0%{opacity:0;}100%{opacity:1;}}
-@keyframes r-q67da2{0%{transform:translateX(-100%);}100%{transform:translateX(400%);}}
-@keyframes r-t2lo5v{0%{opacity:1;}100%{opacity:0;}}</style><script type="module">globalThis.__EXPO_ROUTER_HYDRATE__=true;</script><link rel="preload" href="/Wishly/_expo/static/css/web-95de87480707a56519b4010a4b4baae5.css" as="style"><link rel="stylesheet" href="/Wishly/_expo/static/css/web-95de87480707a56519b4010a4b4baae5.css"><link rel="icon" href="/Wishly/favicon.ico" /></head><body><div id="root"><div class="css-g5y9jx r-13awgt0"><!--$--><div class="css-g5y9jx" style="flex:1;--color-primary:#2F6B58;--color-background:#F8FAF8;--color-surface:#FFFFFF;--color-foreground:#152B3A;--color-muted:#71808A;--color-border:#DDE5E3;--color-success:#2F6B58;--color-warning:#D9914A;--color-error:#D96757"><div class="css-g5y9jx r-13awgt0"><div class="css-g5y9jx" style="flex:1"><div style="position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;visibility:hidden"></div><div class="css-g5y9jx r-13awgt0"><div class="css-g5y9jx r-13awgt0 r-1p0dtai r-1d2f490 r-u8s1d r-zchlnj r-ipm5af" style="background-color:rgba(242,242,242,1.00);display:flex"><div class="css-g5y9jx r-13awgt0"><div class="css-g5y9jx r-13awgt0"><!--$--><div style="position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;visibility:hidden"></div><div class="css-g5y9jx r-13awgt0" style="flex-direction:column"><div class="css-g5y9jx r-13awgt0 r-1udh08x"><div class="css-g5y9jx r-1p0dtai r-1d2f490 r-u8s1d r-zchlnj r-ipm5af" style="z-index:0"><div class="css-g5y9jx r-13awgt0" style="background-color:rgba(242,242,242,1.00)"><div class="css-g5y9jx r-13awgt0"><!--$--><div class="css-g5y9jx flex-1 bg-[#F8FAF8]"><div class="css-g5y9jx flex-1" style="padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px"><div class="css-g5y9jx flex-1"><div class="css-g5y9jx r-13awgt0"><div class="css-g5y9jx r-150rngu r-eqz5dr r-16y2uox r-1wbh5a2 r-11yh6sk r-1rnoaur r-agouwx r-2eszeu"><div class="css-g5y9jx r-rabhyy r-u9wvl5"><div class="css-g5y9jx r-1awozwy r-18u37iz r-qn3fzs r-m611by"><div class="css-g5y9jx r-1awozwy r-1asr48p r-1q9bdsx r-1a8msfu r-1777fci r-131xog0"><div dir="auto" class="css-146c3p1 r-1ydbznw r-evnaw r-1vr29t4 r-16krg75">W</div></div><div class="css-g5y9jx r-13awgt0 r-1hfyk0a"><div dir="auto" class="css-146c3p1 r-7ervbz r-1i10wst r-1vr29t4 r-icto9i">wishly</div><div dir="auto" class="css-146c3p1 r-1moou3 r-1armvtb r-b88u0q r-10b5y5f r-1bymd8e">YOUR BEST MATCH</div></div><div tabindex="0" class="css-g5y9jx r-1loqt21 r-1otgn73 r-1awozwy r-zqp0mj r-5t7aoe r-zx9znk r-1777fci r-5orghg"><div dir="auto" class="css-146c3p1 r-7ervbz r-n6v787 r-1vr29t4">A</div></div></div><div class="css-g5y9jx r-11ujhjy r-m611by"><div dir="auto" class="css-146c3p1 r-1ujot5 r-1gkfh8e r-1vr29t4 r-i933xg r-15d164r">GOOD EVENING, ALEX</div><div dir="auto" class="css-146c3p1 r-7ervbz r-uho16t r-1vr29t4 r-nm9kes r-xnfwke">What are you<!-- -->
-<!-- -->in the mood for?</div><div dir="auto" class="css-146c3p1 r-1moou3 r-a023e6 r-hbpseb r-1s2bzr4">Tell us the wish. We’ll find the fit.</div></div><div class="css-g5y9jx r-1asr48p r-1fuqb1j r-1ltk5o6 r-1y0e3ya r-whuqzp"><div class="css-g5y9jx r-1awozwy r-18u37iz r-1wtj0ep"><div class="css-g5y9jx r-1awozwy r-nrbk4l r-1xfd6ze r-18u37iz r-ojf8lh r-vuvdlw r-1ezpcd1"><div dir="auto" class="css-146c3p1"></div><div dir="auto" class="css-146c3p1 r-tj6fb6 r-10x49cs r-1vr29t4 r-ud0q2t">JUST WISH</div></div><div dir="auto" class="css-146c3p1 r-1wmi4lz r-10x49cs">No perfect keywords needed</div></div><textarea placeholder="I need something for..." autoCapitalize="sentences" autoComplete="on" autoCorrect="on" dir="auto" enterKeyHint="done" spellCheck="true" virtualkeyboardpolicy="auto" class="css-11aywtz r-6taxm2 r-jwli3a r-adyw6z r-1kfrs79 r-1kt6imw r-ml9okn r-qu4leh r-t60dpp" style="--placeholderTextColor:#9AA8AD"></textarea><div class="css-g5y9jx r-1awozwy r-18u37iz r-1wtj0ep r-156q2ks"><div dir="auto" class="css-146c3p1 r-1iwqwrw r-1gkfh8e">Try a situation, budget or feeling</div><div tabindex="0" class="css-g5y9jx r-1loqt21 r-1otgn73 r-1awozwy r-1iezg2v r-1ylenci r-ur6pnr r-1777fci r-1mhb1uw"><div dir="auto" class="css-146c3p1"></div></div></div></div><div class="css-g5y9jx r-1awozwy r-18u37iz r-1wtj0ep r-dr54s0 r-4cht5q"><div dir="auto" class="css-146c3p1 r-7ervbz r-ubezar r-1vr29t4 r-afbznj">Browse a starting point</div><div dir="auto" class="css-146c3p1 r-tj6fb6 r-1enofrn r-b88u0q">See all</div></div><div class="css-g5y9jx r-150rngu r-18u37iz r-16y2uox r-1wbh5a2 r-lltvgl r-buy8e9 r-agouwx r-2eszeu"><div class="css-g5y9jx r-18u37iz r-uaa2di r-1ah4tor"><div class="css-g5y9jx r-18u37iz"><div tabindex="0" class="css-g5y9jx r-1loqt21 r-1otgn73 r-1awozwy r-14lw9ot r-f0mb9a r-t23y2h r-rs99b7 r-18u37iz r-1cmwbt1 r-ytbthy r-1m1l54l"><div class="css-g5y9jx r-1awozwy r-zqp0mj r-1dedoh8 r-1k25im9 r-1777fci r-19tjxh9"><div dir="auto" class="css-146c3p1"></div></div><div dir="auto" class="css-146c3p1 r-7ervbz r-1enofrn r-b88u0q">Shopping</div></div></div><div class="css-g5y9jx r-18u37iz"><div tabindex="0" class="css-g5y9jx r-1loqt21 r-1otgn73 r-1awozwy r-14lw9ot r-f0mb9a r-t23y2h r-rs99b7 r-18u37iz r-1cmwbt1 r-ytbthy r-1m1l54l"><div class="css-g5y9jx r-1awozwy r-zqp0mj r-1dedoh8 r-1k25im9 r-1777fci r-19tjxh9"><div dir="auto" class="css-146c3p1"></div></div><div dir="auto" class="css-146c3p1 r-7ervbz r-1enofrn r-b88u0q">Food</div></div></div><div class="css-g5y9jx r-18u37iz"><div tabindex="0" class="css-g5y9jx r-1loqt21 r-1otgn73 r-1awozwy r-14lw9ot r-f0mb9a r-t23y2h r-rs99b7 r-18u37iz r-1cmwbt1 r-ytbthy r-1m1l54l"><div class="css-g5y9jx r-1awozwy r-zqp0mj r-1dedoh8 r-1k25im9 r-1777fci r-19tjxh9"><div dir="auto" class="css-146c3p1"></div></div><div dir="auto" class="css-146c3p1 r-7ervbz r-1enofrn r-b88u0q">Experiences</div></div></div><div class="css-g5y9jx r-18u37iz"><div tabindex="0" class="css-g5y9jx r-1loqt21 r-1otgn73 r-1awozwy r-14lw9ot r-f0mb9a r-t23y2h r-rs99b7 r-18u37iz r-1cmwbt1 r-ytbthy r-1m1l54l"><div class="css-g5y9jx r-1awozwy r-zqp0mj r-1dedoh8 r-1k25im9 r-1777fci r-19tjxh9"><div dir="auto" class="css-146c3p1"></div></div><div dir="auto" class="css-146c3p1 r-7ervbz r-1enofrn r-b88u0q">Services</div></div></div><div class="css-g5y9jx r-18u37iz"><div tabindex="0" class="css-g5y9jx r-1loqt21 r-1otgn73 r-1awozwy r-14lw9ot r-f0mb9a r-t23y2h r-rs99b7 r-18u37iz r-1cmwbt1 r-ytbthy r-1m1l54l"><div class="css-g5y9jx r-1awozwy r-zqp0mj r-1dedoh8 r-1k25im9 r-1777fci r-19tjxh9"><div dir="auto" class="css-146c3p1"></div></div><div dir="auto" class="css-146c3p1 r-7ervbz r-1enofrn r-b88u0q">Travel</div></div></div><div class="css-g5y9jx r-18u37iz"><div tabindex="0" class="css-g5y9jx r-1loqt21 r-1otgn73 r-1awozwy r-14lw9ot r-f0mb9a r-t23y2h r-rs99b7 r-18u37iz r-1cmwbt1 r-ytbthy r-1m1l54l"><div class="css-g5y9jx r-1awozwy r-zqp0mj r-1dedoh8 r-1k25im9 r-1777fci r-19tjxh9"><div dir="auto" class="css-146c3p1"></div></div><div dir="auto" class="css-146c3p1 r-7ervbz r-1enofrn r-b88u0q">Learning</div></div></div></div></div><div class="css-g5y9jx r-1awozwy r-18u37iz r-1wtj0ep r-dr54s0 r-4cht5q"><div dir="auto" class="css-146c3p1 r-7ervbz r-ubezar r-1vr29t4 r-afbznj">Ideas to get you started</div></div><div class="css-g5y9jx r-150rngu r-18u37iz r-16y2uox r-1wbh5a2 r-lltvgl r-buy8e9 r-agouwx r-2eszeu"><div class="css-g5y9jx r-18u37iz r-1ssbvtb r-1ah4tor"><div class="css-g5y9jx r-18u37iz"><div tabindex="0" class="css-g5y9jx r-1loqt21 r-1otgn73 r-zqp0mj r-y47klf r-1aiv68t r-nsbfu8 r-e34ii6"><div dir="auto" class="css-146c3p1 r-1ujot5 r-qqjak8 r-1vr29t4 r-19r33im r-6gpygo">JUST WISH</div><div dir="auto" class="css-146c3p1 r-7ervbz r-ubezar r-1vr29t4 r-rjixqe r-1ah4tor">A memorable Friday afternoon</div><div dir="auto" class="css-146c3p1 r-1moou3 r-1gkfh8e r-1s2bzr4">EGP 1,500 · Cairo · 2 people</div><div class="css-g5y9jx r-1awozwy r-1hus931 r-1dedoh8 r-zye60e r-6zzn7w r-1777fci r-u8s1d r-1sd1n6o r-q1j0wu"><div dir="auto" class="css-146c3p1"></div></div></div></div><div class="css-g5y9jx r-18u37iz"><div tabindex="0" class="css-g5y9jx r-1loqt21 r-1otgn73 r-zqp0mj r-y47klf r-1aiv68t r-nsbfu8 r-e34ii6"><div dir="auto" class="css-146c3p1 r-1ujot5 r-qqjak8 r-1vr29t4 r-19r33im r-6gpygo">QUICK MATCH</div><div dir="auto" class="css-146c3p1 r-7ervbz r-ubezar r-1vr29t4 r-rjixqe r-1ah4tor">A thoughtful birthday gift</div><div dir="auto" class="css-146c3p1 r-1moou3 r-1gkfh8e r-1s2bzr4">Under EGP 1,000 · personal</div><div class="css-g5y9jx r-1awozwy r-1hus931 r-1dedoh8 r-zye60e r-6zzn7w r-1777fci r-u8s1d r-1sd1n6o r-q1j0wu"><div dir="auto" class="css-146c3p1"></div></div></div></div></div></div><div class="css-g5y9jx r-1awozwy r-1lin31x r-5kkj8d r-18u37iz r-1s367qj r-1no09lo r-95jzfe"><div class="css-g5y9jx r-1awozwy r-nrbk4l r-1q9bdsx r-zx9znk r-1777fci r-5orghg"><div dir="auto" class="css-146c3p1"></div></div><div class="css-g5y9jx r-13awgt0"><div dir="auto" class="css-146c3p1 r-7ervbz r-1enofrn r-1vr29t4">Your benefits count too</div><div dir="auto" class="css-146c3p1 r-1moou3 r-1gkfh8e r-fxxt2n r-19qrga8">Wishly ranks effective value for you, not just sticker price.</div></div><div dir="auto" class="css-146c3p1"></div></div></div></div></div></div></div></div><!--/$--></div></div></div></div><div class="css-g5y9jx r-1p0dtai r-zchlnj r-1d2f490 r-105ug2t" style="border-right-color:rgba(216,216,216,1.00);border-bottom-color:rgba(216,216,216,1.00);border-left-color:rgba(216,216,216,1.00);padding-right:0px;padding-left:0px;padding-top:8px;padding-bottom:12px;height:70px;background-color:rgba(248,250,248,1.00);border-top-color:rgba(221,229,227,1.00);border-top-width:0.5px;transform:translateY(0px)"><div class="css-g5y9jx r-1p0dtai r-1d2f490 r-u8s1d r-zchlnj r-ipm5af r-633pao"></div><div role="tablist" class="css-g5y9jx r-13awgt0 r-18u37iz"><div class="css-g5y9jx r-13awgt0" style="border-top-left-radius:0px;border-top-right-radius:0px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;overflow-x:visible;overflow-y:visible"><a href="/Wishly/" role="tab" aria-selected="true" tabindex="0" class="css-g5y9jx r-1otgn73 r-1awozwy r-1onu96p r-eqz5dr r-1h0z5md r-1uu6nss" style="cursor:pointer;flex:1;background-color:rgba(0,0,0,0.00);border-top-left-radius:0px;border-top-right-radius:0px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;opacity:1"><div class="css-g5y9jx r-h0d30l r-726pan"><div class="css-g5y9jx r-1awozwy r-1kihuf0 r-1pi2tsx r-1777fci r-u8s1d r-13qz1uu" style="opacity:1;min-width:25px"><div dir="auto" class="css-146c3p1"></div></div><div class="css-g5y9jx r-1awozwy r-1kihuf0 r-1pi2tsx r-1777fci r-u8s1d r-13qz1uu" style="opacity:0"><div dir="auto" class="css-146c3p1"></div></div></div><div dir="auto" class="css-146c3p1 r-dnmrzs r-1udh08x r-1udbk01 r-3s2u2q r-1iln25a r-1niwhzg r-q4m81j r-10x49cs" style="color:rgba(47,107,88,1.00);font-family:system-ui, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;font-weight:500">Discover</div></a></div><div class="css-g5y9jx r-13awgt0" style="border-top-left-radius:0px;border-top-right-radius:0px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;overflow-x:visible;overflow-y:visible"><a href="/Wishly/profile" role="tab" aria-selected="false" tabindex="0" class="css-g5y9jx r-1otgn73 r-1awozwy r-1onu96p r-eqz5dr r-1h0z5md r-1uu6nss" style="cursor:pointer;flex:1;background-color:rgba(0,0,0,0.00);border-top-left-radius:0px;border-top-right-radius:0px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;opacity:1"><div class="css-g5y9jx r-h0d30l r-726pan"><div class="css-g5y9jx r-1awozwy r-1kihuf0 r-1pi2tsx r-1777fci r-u8s1d r-13qz1uu" style="opacity:0;min-width:25px"><div dir="auto" class="css-146c3p1"></div></div><div class="css-g5y9jx r-1awozwy r-1kihuf0 r-1pi2tsx r-1777fci r-u8s1d r-13qz1uu" style="opacity:1"><div dir="auto" class="css-146c3p1"></div></div></div><div dir="auto" class="css-146c3p1 r-dnmrzs r-1udh08x r-1udbk01 r-3s2u2q r-1iln25a r-1niwhzg r-q4m81j r-10x49cs" style="color:rgba(142,142,143,1.00);font-family:system-ui, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;font-weight:500">Profile</div></a></div></div></div></div><!--/$--></div></div></div></div></div></div></div><!--/$--></div></div><script src="/Wishly/_expo/static/js/web/entry-658b540c1b6131965493c35e5a9d6ec6.js" defer></script>
-</body></html>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wishly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<a class="skip" href="#main" data-t="skip">Skip to main content</a>
+
+<header class="top">
+  <a class="logo" href="#" data-action="go" data-view="wish" data-t-attr="aria-label:homeLabel">
+    <span class="logo-mark" aria-hidden="true">W</span>
+    <span><b>wishly</b><small data-t="tagline">YOUR BEST MATCH</small></span>
+  </a>
+  <nav class="topnav" data-t-attr="aria-label:mainNav">
+    <button data-action="go" data-view="wish" aria-current="page" data-t="navWish">Wish</button>
+    <button data-action="go" data-view="matches" data-t="navMatches">Matches</button>
+    <button data-action="go" data-view="trips" data-t="navTrips">My trips</button>
+    <button data-action="go" data-view="profile" data-t="navProfile">Wish Profile</button>
+  </nav>
+  <button class="acct" id="acctBtn" data-action="account" aria-haspopup="dialog" data-mode="guest"><span class="dot" aria-hidden="true"></span><span class="acct-label" id="acctLabel">Guest</span></button>
+  <button class="lang-toggle" id="langBtn" data-action="lang" lang="ar">العربية</button>
+  <button class="a11y-btn" data-action="a11y" aria-haspopup="dialog" data-t-attr="aria-label:a11y">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M5 8h14M12 8v6m0 0-3 7m3-7 3 7"/></svg>
+    <span data-t="a11y">Accessibility</span>
+  </button>
+</header>
+
+<main id="main" tabindex="-1">
+  <!-- WISH -->
+  <section id="view-wish" aria-labelledby="h-wish">
+    <p class="greet" id="greet"></p>
+    <h1 id="h-wish" data-t="wishTitle">What are you in the mood for?</h1>
+    <p class="lede" data-t="wishLede">Tell us the wish. We'll find the fit.</p>
+    <div id="bootNotice"></div>
+
+    <form class="wishbox" id="wishForm">
+      <div class="wishbox-top">
+        <span class="pill"><span aria-hidden="true">✦</span> <span data-t="justWish">Just wish</span></span>
+        <span class="wishbox-hint advanced" data-t="noKeywords">No perfect keywords needed</span>
+      </div>
+      <label for="wish" class="sr-only" data-t="wishLabel">Describe your wish</label>
+      <textarea id="wish" dir="auto" data-t-attr="placeholder:wishPlaceholder" aria-describedby="wishHint"></textarea>
+      <div class="wishbox-bar">
+        <span class="hint" id="wishHint" data-t="wishHint">Describe it, then check what we understood before searching</span>
+        <button type="button" class="icon-btn" id="micBtn" data-action="mic" aria-pressed="false" data-t-attr="aria-label:speakWish">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+        </button>
+        <button type="submit" class="send" id="sendBtn" data-t-attr="aria-label:checkWish">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg>
+        </button>
+      </div>
+    </form>
+
+    <!-- Search settings: always visible and editable; structured fields win over the wish text -->
+    <section class="panel" id="searchPanel" aria-labelledby="h-search">
+      <h2 id="h-search" tabindex="-1" data-t="searchTitle">Your search</h2>
+      <p data-t="searchHelp">These fields take priority over the wish text. Change anything before you search.</p>
+      <div id="understood"></div>
+
+      <fieldset class="picture" style="padding:12px 14px">
+        <legend class="sr-only" data-t="whereTitle">Where</legend>
+        <b data-t="whereTitle" aria-hidden="true">Where</b>
+        <div class="fields">
+          <label><span data-t="searchArea">Search area for this request</span>
+            <select id="fArea"></select></label>
+          <label><span data-t="radius">Radius around my location (km)</span>
+            <select id="fRadius"><option>1</option><option>2</option><option selected>5</option><option>10</option><option>20</option><option>50</option></select></label>
+        </div>
+        <div class="row">
+          <button type="button" class="btn small" id="locBtn" data-action="locate" data-t="useLocation">Use my current location</button>
+          <button type="button" class="btn small" id="locClear" data-action="clearLocation" hidden data-t="useAreaInstead">Choose an area instead</button>
+          <button type="button" class="btn small" id="locSave" data-action="saveLocation" hidden data-t="saveLocation">Save this location as my starting point</button>
+        </div>
+        <p id="locStatus" class="loc-status" role="status" data-t="locIdle">Device location is not used unless you press “Use my current location”.</p>
+      </fieldset>
+
+      <fieldset class="picture" style="padding:12px 14px">
+        <legend class="sr-only" data-t="budgetGroupTitle">Budget and group</legend>
+        <b data-t="budgetGroupTitle" aria-hidden="true">Budget and group</b>
+        <div class="fields">
+          <label><span data-t="perPerson">Budget per person (EGP)</span><input id="fPP" type="number" inputmode="numeric" min="0" max="1000000" step="50"></label>
+          <label><span data-t="people">Number of people</span><input id="fPeople" type="number" inputmode="numeric" min="1" max="20"></label>
+          <label><span data-t="groupTotal">Total group budget (EGP)</span><input id="fTotal" type="number" inputmode="numeric" min="0" max="20000000" step="50"></label>
+          <label><span data-t="budgetMode">Budget is</span>
+            <select id="fMode"><option value="cap" data-t="modeCap">a maximum</option><option value="around" data-t="modeAround">roughly (up to 15% over)</option><option value="over" data-t="modeOver">a minimum</option></select></label>
+        </div>
+        <p class="total-line" id="totalLine" aria-live="polite"></p>
+      </fieldset>
+
+      <fieldset class="picture" style="padding:12px 14px">
+        <legend class="sr-only" data-t="needsTitle">Pets and access for this outing</legend>
+        <b data-t="needsTitle" aria-hidden="true">Pets and access for this outing</b>
+        <label class="check"><input type="checkbox" id="fPet"><span data-t="petAccompanying">A pet is coming with us</span></label>
+        <label class="field" id="fPetTypeWrap" hidden><span data-t="petType">Pet type</span>
+          <select id="fPetType"><option value="dog" data-t="dog">Dog</option><option value="cat" data-t="cat">Cat</option><option value="other" data-t="otherPet">Other</option></select></label>
+        <label class="check"><input type="checkbox" id="fWheel"><span data-t="wheelchairNeeded">Wheelchair access required</span></label>
+        <p class="mini" id="needsNote"></p>
+      </fieldset>
+
+      <div class="row">
+        <button type="button" class="btn primary" id="searchBtn" data-action="search"><span aria-hidden="true">🔎</span> <span data-t="searchNow">Search</span></button>
+        <button type="button" class="btn" data-action="resetSearch" data-t="resetSearch">Clear search fields</button>
+      </div>
+      <p class="demo-banner" data-t="demoBanner">The 18 places in this build are demo records, not real verified businesses.</p>
+    </section>
+
+    <div class="picture" id="picture">
+      <button type="button" id="picToggle" data-action="picToggle" aria-expanded="false" aria-controls="picBody">
+        <span><span aria-hidden="true">🖼️</span> <span data-t="picTitle">Build a wish with pictures, no typing</span></span>
+        <span aria-hidden="true" id="picArrow">＋</span>
+      </button>
+      <div class="picture-body" id="picBody" hidden>
+        <fieldset><legend data-t="picWhat">What?</legend><div class="tiles" data-group="what"></div></fieldset>
+        <fieldset><legend data-t="picWho">Who is it for?</legend><div class="tiles" data-group="who"></div></fieldset>
+        <fieldset><legend data-t="picBudget">Budget</legend><div class="tiles" data-group="budget"></div></fieldset>
+        <fieldset><legend data-t="picFeel">Feeling</legend><div class="tiles" data-group="feel"></div></fieldset>
+        <div class="row"><button type="button" class="btn primary" data-action="picGo" data-t="picUse">Use this wish</button><button type="button" class="btn" data-action="picClear" data-t="clear">Clear</button></div>
+      </div>
+    </div>
+
+    <div class="sec-head"><h2 data-t="browse">Browse a starting point</h2></div>
+    <div class="chips" id="cats"></div>
+    <div class="sec-head advanced"><h2 data-t="ideasTitle">Ideas to get you started</h2></div>
+    <div class="ideas advanced" id="ideas"></div>
+  </section>
+
+  <!-- MATCHES -->
+  <section id="view-matches" aria-labelledby="h-matches" hidden>
+    <button class="btn small back" data-action="go" data-view="wish"><span aria-hidden="true">←</span> <span data-t="editSearch">Edit search</span></button>
+    <h1 id="h-matches" style="margin-top:14px" data-t="matchesTitle">Your best matches</h1>
+    <div id="matchArea"><div class="status" data-t="matchesEmpty">Make a wish first, and your ranked options will appear here.</div></div>
+  </section>
+
+  <!-- TRIPS -->
+  <section id="view-trips" aria-labelledby="h-trips" hidden>
+    <h1 id="h-trips" data-t="tripsTitle">My trips</h1>
+    <p class="lede" id="tripsMode"></p>
+    <div class="tabs" role="tablist" data-t-attr="aria-label:tripsTabs" id="tripTabs"></div>
+    <div id="tripArea" role="tabpanel"></div>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="view-profile" aria-labelledby="h-profile" hidden>
+    <h1 id="h-profile" data-t="profileTitle">Wish Profile</h1>
+    <div class="pcard">
+      <div class="pcard-top">
+        <span class="big-av" aria-hidden="true" id="bigAv">Me</span>
+        <div style="flex:1">
+          <label for="pname" class="sr-only" data-t="yourName">Your name</label>
+          <input id="pname" autocomplete="given-name" maxlength="40" data-t-attr="placeholder:yourName">
+          <p id="profileWhere"></p>
+        </div>
+      </div>
+      <div class="bar-l"><span data-t="matchingContext">Matching context</span><span id="pct"></span></div>
+      <div class="bar" role="progressbar" data-t-attr="aria-label:profileComplete" aria-valuemin="0" aria-valuemax="100" id="pbar"><i id="pfill"></i></div>
+    </div>
+
+    <div class="panel">
+      <h2 data-t="mattersTitle">What matters to you</h2>
+      <p data-t="mattersHelp">We use these to tune your WishScore.</p>
+      <div class="chips" id="prefChips"></div>
+      <div class="fields">
+        <label><span data-t="startArea">Profile starting area</span><select id="pArea"></select></label>
+      </div>
+      <p class="mini" id="startCoordsNote"></p>
+    </div>
+
+    <div class="panel">
+      <h2 data-t="petsTitle">Pet preferences</h2>
+      <p data-t="petsHelp">Owning a pet is different from bringing one with you.</p>
+      <label class="check"><input type="checkbox" id="pPetOwner"><span data-t="petOwner">I own a pet</span></label>
+      <div id="pPetDetails" hidden>
+        <div class="fields"><label><span data-t="petType">Pet type</span><select id="pPetType"><option value="dog" data-t="dog">Dog</option><option value="cat" data-t="cat">Cat</option><option value="other" data-t="otherPet">Other</option></select></label></div>
+        <label class="check"><input type="checkbox" id="pBringPet"><span data-t="bringPetDefault">Tick “pet is coming” by default (I can untick it per search)</span></label>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 data-t="budgetDefaultsTitle">Budget and group defaults</h2>
+      <p data-t="budgetDefaultsHelp">Used only when a search doesn't say.</p>
+      <div class="fields">
+        <label><span data-t="perPerson">Budget per person (EGP)</span><input id="pPP" type="number" min="0" step="50"></label>
+        <label><span data-t="people">Number of people</span><input id="pPeople" type="number" min="1" max="20"></label>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 data-t="bankTitle">Banking privileges</h2>
+      <p data-t="bankHelp">Optional. No card numbers or banking credentials are collected. Offers appear only when verified.</p>
+      <div class="fields">
+        <label><span data-t="bank">Bank</span><select id="pBank"><option value="" data-t="notSpecified">Not specified</option><option value="NBE" data-t="bankNBE">National Bank of Egypt</option><option value="CIB">CIB</option><option value="Banque Misr" data-t="bankMisr">Banque Misr</option><option value="Other" data-t="other">Other</option></select></label>
+        <label><span data-t="cardTier">Card tier</span><select id="pTier"><option value="" data-t="notSpecified">Not specified</option><option value="Classic">Classic</option><option value="Gold">Gold</option><option value="Platinum">Platinum</option><option value="Signature">Signature</option></select></label>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 data-t="accessTitle">Access needs</h2>
+      <p data-t="accessHelp">Optional. These stay private: they are never shown to friends, trip participants or places unless you choose to include them in a message.</p>
+      <div class="needs" id="needs"></div>
+    </div>
+
+    <div class="panel">
+      <h2 data-t="dataTitle">Your data</h2>
+      <p id="dataWhere"></p>
+      <div class="dangerzone"><button class="btn danger" id="delBtn" data-action="deleteData" data-t="deleteData">Delete my data</button><span id="delMsg" class="engine" style="margin:0" role="status"></span></div>
+    </div>
+  </section>
+</main>
+
+<nav class="tabbar" data-t-attr="aria-label:mainNav">
+  <button data-action="go" data-view="wish" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m12 3 2.5 6H21l-5 4 2 7-6-4-6 4 2-7-5-4h6.5z"/></svg><span data-t="navWish">Wish</span></button>
+  <button data-action="go" data-view="matches"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h7"/></svg><span data-t="navMatches">Matches</span></button>
+  <button data-action="go" data-view="trips"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 21V5l7-2 7 2v16l-7-3z"/></svg><span data-t="navTripsShort">Trips</span></button>
+  <button data-action="go" data-view="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span data-t="navProfileShort">Profile</span></button>
+</nav>
+
+<dialog id="a11yDlg" aria-labelledby="a11yTitle">
+  <div class="dlg-head"><h2 id="a11yTitle" data-t="a11y">Accessibility</h2><button class="btn small" data-action="closeDialog" data-t="done">Done</button></div>
+  <div class="dlg-body">
+    <div class="setting"><div><b data-t="textSize">Text size</b><small data-t="textSizeHelp">Bigger text everywhere</small></div>
+      <div class="seg" role="group" data-t-attr="aria-label:textSize"><button data-action="size" data-size="0" aria-pressed="true">A</button><button data-action="size" data-size="1" aria-pressed="false" style="font-size:1.15em">A</button><button data-action="size" data-size="2" aria-pressed="false" style="font-size:1.35em">A</button></div></div>
+    <div class="setting"><div><b data-t="voiceLang">Voice language</b><small data-t="voiceLangHelp">For speaking your wish (separate from the screen language)</small></div>
+      <div class="seg" role="group" data-t-attr="aria-label:voiceLang"><button data-action="vlang" data-vlang="en-US" aria-pressed="true">English</button><button data-action="vlang" data-vlang="ar-EG" aria-pressed="false" lang="ar">عربي</button></div></div>
+    <div class="setting"><div><b id="l-contrast" data-t="contrast">High contrast</b><small data-t="contrastHelp">Black, white and yellow for low vision</small></div><button class="switch" role="switch" aria-checked="false" aria-labelledby="l-contrast" data-action="switch" data-set="contrast"></button></div>
+    <div class="setting"><div><b id="l-theme" data-t="dark">Dark mode</b><small data-t="darkHelp">Easier on light-sensitive eyes</small></div><button class="switch" role="switch" aria-checked="false" aria-labelledby="l-theme" data-action="switch" data-set="dark"></button></div>
+    <div class="setting"><div><b id="l-read" data-t="readAloud">Read results aloud</b><small data-t="readAloudHelp">For blind users or anyone who prefers listening</small></div><button class="switch" role="switch" aria-checked="false" aria-labelledby="l-read" data-action="switch" data-set="read"></button></div>
+    <div class="setting"><div><b id="l-simple" data-t="simple">Simple mode</b><small data-t="simpleHelp">Fewer choices, short plain sentences</small></div><button class="switch" role="switch" aria-checked="false" aria-labelledby="l-simple" data-action="switch" data-set="simple"></button></div>
+    <div class="setting"><div><b id="l-spacing" data-t="spacing">Easy-read spacing</b><small data-t="spacingHelp">More space between letters and lines, helps with dyslexia</small></div><button class="switch" role="switch" aria-checked="false" aria-labelledby="l-spacing" data-action="switch" data-set="spacing"></button></div>
+    <div class="setting"><div><b id="l-motion" data-t="motion">Stop animations</b><small data-t="motionHelp">For motion sensitivity and focus</small></div><button class="switch" role="switch" aria-checked="false" aria-labelledby="l-motion" data-action="switch" data-set="motion"></button></div>
+    <p class="engine" style="margin-top:14px" data-t="a11yNote">Every button works with a keyboard, switch device, or screen reader. Voice input and picture wishes mean nobody has to type, and nobody has to speak.</p>
+  </div>
+</dialog>
+
+<dialog id="dlg" aria-labelledby="dlgTitle">
+  <div class="dlg-head"><h2 id="dlgTitle"></h2><button class="btn small" data-action="closeDialog" data-t="close">Close</button></div>
+  <div class="dlg-body" id="dlgBody"></div>
+</dialog>
+
+<div id="live" class="sr-only" aria-live="polite"></div>
+<div id="toast" class="toast" role="status"></div>
+
+<script src="js/config.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/places.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/stores.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

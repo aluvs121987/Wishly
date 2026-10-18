@@ -1,0 +1,91 @@
+  1 | PASS   | signup creates a profile with the chosen username               | 
+  2 | PASS   | duplicate username does not block sign-up (left empty)          | 
+  3 | PASS   | signup creates an empty private profile                         | 
+  4 | PASS   | A can read own private profile                                  | 
+  5 | PASS   | B cannot read A's private profile (access needs stay private)   | 
+  6 | PASS   | B cannot create a private row for A                             | 
+  7 | PASS   | B's update of other people's private data changed nothing       | 
+  8 | PASS   | C (stranger) cannot see A's profile card                        | 
+  9 | PASS   | C can see own profile card                                      | 
+ 10 | PASS   | username_available: taken name                                  | 
+ 11 | PASS   | username_available: free name                                   | 
+ 12 | PASS   | C can set own username                                          | 
+ 13 | PASS   | C cannot move own profile to another id                         | 
+ 14 | PASS   | C could not edit anyone else's profile                          | 
+ 15 | PASS   | anonymous visitors can read places                              | 
+ 16 | PASS   | all seeded places are demo records                              | 
+ 17 | PASS   | a normal user cannot add places                                 | 
+ 18 | PASS   | demo place still demo after user update attempt                 | 
+ 19 | PASS   | even an admin cannot add a verified pet policy without evidence | 
+ 20 | PASS   | coordinates need a source and check date                        | 
+ 21 | PASS   | admin can add a verified place with evidence                    | 
+ 22 | PASS   | everyone can read evidence                                      | 
+ 23 | PASS   | a normal user cannot add evidence                               | 
+ 24 | PASS   | A saved two places                                              | 
+ 25 | PASS   | B cannot see A's saved places                                   | 
+ 26 | PASS   | B cannot save a place as A                                      | 
+ 27 | PASS   | B's delete did not touch A's saved places                       | 
+ 28 | PASS   | owner is added as an accepted participant                       | 
+ 29 | PASS   | invite token is random and long                                 | 
+ 30 | PASS   | only a hash of the invite token is stored                       | 
+ 31 | PASS   | B cannot see A's private trip before joining                    | 
+ 32 | PASS   | B cannot create an invite for A's trip                          | 
+ 33 | PASS   | B can preview the invitation with the token                     | 
+ 34 | PASS   | invalid invite token is rejected                                | 
+ 35 | PASS   | B cannot add himself as a participant directly                  | 
+ 36 | PASS   | B cannot create a trip owned by A                               | 
+ 37 | PASS   | after accepting, B sees the trip                                | 
+ 38 | PASS   | after accepting, B sees both participants                       | 
+ 39 | PASS   | B can now see A's profile card (co-participant)                 | 
+ 40 | PASS   | B (guest) could not change the trip status                      | 
+ 41 | PASS   | C (not invited) cannot see the trip                             | 
+ 42 | PASS   | C cannot see the trip participants                              | 
+ 43 | PASS   | owner can list invites                                          | 
+ 44 | PASS   | revoked invite cannot be previewed                              | 
+ 45 | PASS   | revoked invite cannot be used to join                           | 
+ 46 | PASS   | revoking the link keeps people who already joined               | 
+ 47 | PASS   | expired invite is rejected                                      | 
+ 48 | PASS   | owner cannot change the trip's place after creating it          | 
+ 49 | PASS   | declining does not give access to the trip                      | 
+ 50 | PASS   | B cannot review before visiting                                 | 
+ 51 | PASS   | rating 2 hides the place for the reviewer                       | 
+ 52 | PASS   | B's exclusion list now has the place                            | 
+ 53 | PASS   | rating outside 1-5 is rejected                                  | 
+ 54 | PASS   | B cannot write a review row directly                            | 
+ 55 | PASS   | B cannot create a rating-type exclusion directly                | 
+ 56 | PASS   | B cannot hide a place for A                                     | 
+ 57 | PASS   | a friend's low rating does not hide the place for A             | 
+ 58 | PASS   | A (participant) can read B's shared rating                      | 
+ 59 | PASS   | C cannot read the trip reviews                                  | 
+ 60 | PASS   | C cannot review a trip they are not in                          | 
+ 61 | PASS   | C cannot mark someone else's trip visited                       | 
+ 62 | PASS   | updating to 4 removes the rating-based exclusion                | 
+ 63 | PASS   | still exactly one review per person per trip                    | 
+ 64 | PASS   | rating 1 hides it again                                         | 
+ 65 | PASS   | restore removes the exclusion                                   | 
+ 66 | PASS   | a user can hide a place manually                                | 
+ 67 | PASS   | completing a trip records the time                              | 
+ 68 | PASS   | after completion the owner can review without marking visited   | 
+ 69 | PASS   | group signal averages participants' visible ratings             | 
+ 70 | PASS   | group signal is empty for non-members                           | 
+ 71 | PASS   | you cannot accept your own friend invite                        | 
+ 72 | PASS   | invalid friend invite is rejected                               | 
+ 73 | PASS   | accepting a friend invite creates the friendship                | 
+ 74 | PASS   | friends can see each other's profile card                       | 
+ 75 | PASS   | friendships cannot be created directly                          | 
+ 76 | PASS   | a friend request needs a shared trip                            | 
+ 77 | PASS   | B cannot see C's profile (no connection)                        | 
+ 78 | PASS   | B cannot see A and C's friendship                               | 
+ 79 | PASS   | B cannot accept his own request                                 | 
+ 80 | PASS   | accepted request creates the friendship                         | 
+ 81 | PASS   | revoked friend invite cannot be used                            | 
+ 82 | PASS   | after leaving, B no longer sees the trip                        | 
+ 83 | PASS   | B cannot rejoin with a revoked link                             | 
+ 84 | PASS   | a guest cannot remove participants                              | 
+ 85 | PASS   | anonymous visitors cannot call trip functions                   | 
+ 86 | PASS   | anonymous visitors see no trips                                 | 
+ 87 | PASS   | anonymous visitors see no profiles                              | 
+ 88 | PASS   | signed-in users cannot call the Facebook lookup helper          | 
+ 89 | PASS   | the Edge Function (service role) can map Facebook ids           | 
+ 90 | PASS   | delete_my_data removes B's reviews, exclusions and memberships  | 
+ 91 | PASS   | delete_my_data does not touch A's trip                          | 

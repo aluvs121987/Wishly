@@ -1,0 +1,576 @@
+[
+  {
+    "id": "T1.1",
+    "name": "Maadi scenario: wish fills editable fields before searching",
+    "result": "PASS",
+    "expected": "area Maadi, 700 pp, 2 people, pet ticked, still on the search screen",
+    "actual": "{\"area\":\"Maadi\",\"pp\":\"700\",\"people\":\"2\",\"total\":\"1400\",\"pet\":true,\"mode\":\"cap\"}"
+  },
+  {
+    "id": "T1.2",
+    "name": "Recognises 700 × 2 = 1,400 EGP total",
+    "result": "PASS",
+    "expected": "EGP 700 per person × 2 = EGP 1,400 total",
+    "actual": "EGP 700 per person × 2 = EGP 1,400 total"
+  },
+  {
+    "id": "T1.3",
+    "name": "Search uses Maadi, café, pet and 1,400 total",
+    "result": "PASS",
+    "expected": "chips: Area: Maadi, Café, Dog coming, 1,400",
+    "actual": "Pet-friendly café in Maadi, Cairo. Budget 700 EGP per person, 2 people. Our dog is coming. Area: Maadi 2 people Up to EGP 700 per person × 2 = EGP 1,400 Food Café Dog coming"
+  },
+  {
+    "id": "T1.4",
+    "name": "Honest no-match with demo data (no fictional place confirmed)",
+    "result": "PASS",
+    "expected": "0 confirmed + 'No confirmed match'",
+    "actual": "{\"conf\":[],\"ask\":[]}"
+  },
+  {
+    "id": "T1.5",
+    "name": "Area not silently expanded (expansion offered as a button only)",
+    "result": "PASS",
+    "expected": "no results outside Maadi; 'Search all areas' button shown",
+    "actual": "{\"ask\":[]}"
+  },
+  {
+    "id": "T1.6",
+    "name": "With a verified Maadi pet-friendly café (test fixture) it is confirmed, priced for 2",
+    "result": "PASS",
+    "expected": "fx1 confirmed, EGP 300 × 2 = EGP 600",
+    "actual": "{\"conf2\":[\"fx1\"],\"meta\":\"Food · Maadi · EGP 300 per person × 2 = EGP 600 · about 62 min by car from New Cairo (rough estimate)\"}"
+  },
+  {
+    "id": "T1.7",
+    "name": "No page errors",
+    "result": "PASS",
+    "expected": "no errors",
+    "actual": "[]"
+  },
+  {
+    "id": "T2.1",
+    "name": "Selected area wins over text area and the conflict is shown",
+    "result": "PASS",
+    "expected": "area stays Zamalek, note explains",
+    "actual": "From your wish: café in Maadi for 2 Food Café Your wish mentions Maadi, but the search uses Zamalek, as set in the fields."
+  },
+  {
+    "id": "T2.2",
+    "name": "Results use the structured area",
+    "result": "PASS",
+    "expected": "chip Area: Zamalek",
+    "actual": "café in Maadi for 2 Area: Zamalek 2 people Food Café"
+  },
+  {
+    "id": "T2.3",
+    "name": "Arabic wish with Arabic digits fills Maadi, 700/person, 2 people, dog",
+    "result": "PASS",
+    "expected": "Maadi / 700 / 2 / dog",
+    "actual": "{\"area\":\"Maadi\",\"pp\":\"700\",\"people\":\"2\",\"pet\":true,\"type\":\"dog\"}"
+  },
+  {
+    "id": "T2.4",
+    "name": "Group total → per person derived (1,500 / 3 = 500)",
+    "result": "PASS",
+    "expected": "per person 500",
+    "actual": "500"
+  },
+  {
+    "id": "T3.1",
+    "name": "Wheelchair: no demo place shown as confirmed accessible",
+    "result": "PASS",
+    "expected": "0 confirmed",
+    "actual": "[]"
+  },
+  {
+    "id": "T3.2",
+    "name": "Unknown access goes to 'Ask before choosing' with what to confirm",
+    "result": "PASS",
+    "expected": "ask list with 'Wheelchair access not confirmed'",
+    "actual": "[\"c1\",\"c3\"]"
+  },
+  {
+    "id": "T3.3",
+    "name": "Place with steps at the entrance (felucca) is excluded",
+    "result": "PASS",
+    "expected": "c5 absent, reason listed",
+    "actual": "[\"c6\",\"c7\",\"c16\"]"
+  },
+  {
+    "id": "T3.4",
+    "name": "Three states: verified full access → confirmed; ramp only → needs confirmation; upstairs no lift → excluded",
+    "result": "PASS",
+    "expected": "fx1 confirmed, fx2 ask, fx3 excluded",
+    "actual": "{\"c2\":[\"fx1\"],\"a2\":[\"c1\",\"c3\",\"fx2\"]}"
+  },
+  {
+    "id": "T3.5",
+    "name": "Details show access facts, 'ramp alone' rule and demo source",
+    "result": "PASS",
+    "expected": "facts + ramp note + source",
+    "actual": "Food · Café · Demo This is a demo record: a fictional place. Its details are examples, not facts about a real business. Location Zamalek No verified venue location. Maps and ride links are off so you aren't sent to a district centre. Price EGP 250 per person × 1 = EGP 250 Transport: not included · T"
+  },
+  {
+    "id": "T4.1",
+    "name": "Location requested only on click; accuracy shown",
+    "result": "PASS",
+    "expected": "idle before click; '~20 m' after",
+    "actual": "{\"before\":\"Device location is not used unless you press “Use my current location”.\",\"st\":\"Using your device location (accurate to about 20 m, read at 20:33). It stays on this screen only and is not saved.\"}"
+  },
+  {
+    "id": "T4.2",
+    "name": "Radius search uses only verified venue coordinates (fixture within 5 km; demo left out and counted)",
+    "result": "PASS",
+    "expected": "only fx1; note about places without exact location",
+    "actual": "{\"conf\":[\"fx1\"]}"
+  },
+  {
+    "id": "T4.3",
+    "name": "Precise coordinates are not written to storage",
+    "result": "PASS",
+    "expected": "no coordinates in localStorage",
+    "actual": "155 chars"
+  },
+  {
+    "id": "T4.4",
+    "name": "Stale location (over 5 min) expires and asks for refresh",
+    "result": "PASS",
+    "expected": "expired message, device cleared",
+    "actual": "Your device location is more than 5 minutes old and was cleared. Refresh it, or choose an area."
+  },
+  {
+    "id": "T4.5",
+    "name": "Location denied handled with manual-area fallback",
+    "result": "PASS",
+    "expected": "message + area selectable",
+    "actual": "Location permission was denied. Choose an area instead, or allow location in your browser settings and try again."
+  },
+  {
+    "id": "T4.6",
+    "name": "Location unavailable handled with manual-area fallback",
+    "result": "PASS",
+    "expected": "message + area selectable",
+    "actual": "Your location isn't available right now. Try again, or choose an area."
+  },
+  {
+    "id": "T4.7",
+    "name": "Location timeout handled with manual-area fallback",
+    "result": "PASS",
+    "expected": "message + area selectable",
+    "actual": "Finding your location took too long. Try again, or choose an area."
+  },
+  {
+    "id": "T4.8",
+    "name": "Inaccurate location (4.8 km) is rejected, not silently used",
+    "result": "PASS",
+    "expected": "imprecise message, no device location",
+    "actual": "Your location is too imprecise to use (about 4,800 m). Try again outdoors, or choose an area."
+  },
+  {
+    "id": "T4.9",
+    "name": "Real browser permission not granted → denied state",
+    "result": "PASS",
+    "expected": "denied (or unavailable) message",
+    "actual": "Location permission was denied. Choose an area instead, or allow location in your browser settings and try again."
+  },
+  {
+    "id": "T5.1",
+    "name": "Zamalek café (demo) appears as a requirement match",
+    "result": "PASS",
+    "expected": "c1 in results",
+    "actual": "[\"c1\"]"
+  },
+  {
+    "id": "T5.2",
+    "name": "Saved → planned trip with Cairo time (19:30 Cairo = 16:30 UTC in October 2026)",
+    "result": "PASS",
+    "expected": "trip listed 7:30 pm Cairo; stored 16:30Z; total 600",
+    "actual": "{\"startsAt\":\"2026-10-24T16:30:00.000Z\",\"trip\":\"Recommendation → Saved → Planned trip → Visited → Rated experience. Garden Courtyard Café Planned Demo Zamalek · Sat, 24 Oct 2026, 19:30 (Cairo time) 2 people · EGP 300 per person × 2 = EGP 600 total · Place price: EGP 250 per person × 2 = EGP 500 Inviting friends needs a Wishly account on the server, which isn't connected in this copy. I visited Mark trip completed Edit Share Cancel trip Delete trip\"}"
+  },
+  {
+    "id": "T5.3",
+    "name": "Visited → rating 2 explains and creates a personal exclusion",
+    "result": "PASS",
+    "expected": "exclusion c1 (rating); toast explains",
+    "actual": "{\"ex\":{\"c1\":{\"reason\":\"rating\",\"at\":\"2026-10-18T17:33:15.984Z\",\"tripId\":\"a432a697-f744-4de2-b8bd-3f7583fc60c8\"}},\"toast\":\"Rating saved. Garden Courtyard Café is now hidden from your future results.\"}"
+  },
+  {
+    "id": "T5.4",
+    "name": "Excluded section lists the place with Restore",
+    "result": "PASS",
+    "expected": "listed + Restore",
+    "actual": "A place you rate 1 or 2 is hidden from your own future results (never from anyone else's). Rating it 3 or more, or pressing Restore, brings it back. Garden Courtyard Café Hidden because you rated it 1–2 · 18 Oct 2026 Restore"
+  },
+  {
+    "id": "T5.5",
+    "name": "Excluded place is gone from the reviewer's next search",
+    "result": "PASS",
+    "expected": "c1 absent + note",
+    "actual": "[]"
+  },
+  {
+    "id": "T5.6",
+    "name": "Refresh keeps saved place, trip, rating and exclusion",
+    "result": "PASS",
+    "expected": "saved c1, excluded c1, 1 trip",
+    "actual": "{\"saved\":[\"c1\"],\"ex\":[\"c1\"],\"trips\":1}"
+  },
+  {
+    "id": "T5.7",
+    "name": "Restore → eligible again",
+    "result": "PASS",
+    "expected": "c1 back",
+    "actual": "[\"c1\"]"
+  },
+  {
+    "id": "T5.8",
+    "name": "Updating rating above 2 removes the exclusion; still one rating per trip",
+    "result": "PASS",
+    "expected": "no exclusion, 1 review = 4",
+    "actual": "{\"ex\":{},\"reviews\":1,\"rating\":4}"
+  },
+  {
+    "id": "T5.9",
+    "name": "Separate place / organization / transport ratings stored",
+    "result": "PASS",
+    "expected": "fields place, org, transport",
+    "actual": ""
+  },
+  {
+    "id": "T5.10",
+    "name": "Guest mode is honest about invites (no fake invite button)",
+    "result": "PASS",
+    "expected": "no invite button in guest mode",
+    "actual": ""
+  },
+  {
+    "id": "T5.11",
+    "name": "No page errors",
+    "result": "PASS",
+    "expected": "none",
+    "actual": "[]"
+  },
+  {
+    "id": "T6.1",
+    "name": "Owning a pet does not tick 'pet is coming'",
+    "result": "PASS",
+    "expected": "unticked",
+    "actual": "false"
+  },
+  {
+    "id": "T6.2",
+    "name": "Default can be overridden per outing ('without my dog')",
+    "result": "PASS",
+    "expected": "ticked by default, unticked by the wish",
+    "actual": "{\"ticked\":true,\"after\":false}"
+  },
+  {
+    "id": "T6.3",
+    "name": "Unknown / demo pet policy goes to 'Ask before choosing', not confirmed",
+    "result": "PASS",
+    "expected": "c1 in ask",
+    "actual": "{\"ask\":[\"c1\"],\"conf\":[]}"
+  },
+  {
+    "id": "T7.1",
+    "name": "Ask the place: verified contacts only, click-to-call and WhatsApp text",
+    "result": "PASS",
+    "expected": "tel: + wa.me with text",
+    "actual": "[\"https://wa.me/201000000000?text=Hello%20Fixture%20Verified%20Caf%C3%A9%2C%20I%27m%20thinking%20of%20visiting.%20Could%20you%20tell%20me%3A%0A-%20Is%20a%20Dog%20allowed%3F%20Any%20size%2C%20area%20or%20seating%20rules%3F%0A-%20Prices%20for%20our%20group%2C%20and%20whether%20you%27re%20open%20and%20available%20at%20our%20time.%0AThank%20you.\",\"tel:+20200000000\",\"https://example.org/fixture\"]"
+  },
+  {
+    "id": "T7.2",
+    "name": "Access questions stay out of the message without consent",
+    "result": "PASS",
+    "expected": "no access questions; pet question present",
+    "actual": "Hello Fixture Verified Café, I'm thinking of visiting. Could you tell me:\n- Is a Dog allowed? Any size, area or seating rules?\n- Prices for our group, and whether you're open and available at our time.\nThank you."
+  },
+  {
+    "id": "T7.3",
+    "name": "With consent, access questions are added",
+    "result": "PASS",
+    "expected": "access questions included",
+    "actual": "Hello Fixture Verified Café, I'm thinking of visiting. Could you tell me:\n- Is a Dog allowed? Any size, area or seating rules?\n- Is there enough space inside for a wheelchair to move and sit?\n- Is it on the ground floor, or is there a working lift?\n- Is there an accessible toilet?\n- Prices for our group, and whether you're open and available at our time.\nThank you."
+  },
+  {
+    "id": "T7.4",
+    "name": "Uber link carries venue coordinates and name; Maps uses venue coordinates",
+    "result": "PASS",
+    "expected": "dropoff lat/lng + nickname; google destination",
+    "actual": "[\"https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff%5Blatitude%5D=29.9605&dropoff%5Blongitude%5D=31.2575&dropoff%5Bnickname%5D=Fixture+Verified+Caf%C3%A9&dropoff%5Bformatted_address%5D=Road+9%2C+Maadi+%28test+fixture%29\",\"https://www.google.com/maps/dir/?api=1&destination=29.9605,31.2575&travelmode=driving\",\"https://www.google.com/maps/dir/?api=1&destination=29.9605,31.2575&travelmode=transit\",\"https://www.google.com/maps/dir/?api=1&destination=29.9605,31.2575&travelmode=walking\"]"
+  },
+  {
+    "id": "T7.5",
+    "name": "Careem: honest copy-address fallback (no fake deep link)",
+    "result": "PASS",
+    "expected": "fallback text, no careem link",
+    "actual": ""
+  },
+  {
+    "id": "T7.6",
+    "name": "Demo place: no map pin or ride link (district centre never used)",
+    "result": "PASS",
+    "expected": "no links; explanation + Ask the place",
+    "actual": "Location not verified This place has no verified location, so Wishly won't send you to a map pin that may be wrong. Ask the place for the exact address. Ask the"
+  },
+  {
+    "id": "T7.7",
+    "name": "Share text has name, area, price basis and total, demo note; no access needs or location",
+    "result": "PASS",
+    "expected": "name/price/demo note, nothing private",
+    "actual": "Wishly: Garden Courtyard Café\nZamalek\nEGP 250 per person × 1 = EGP 250\nNote: demo listing, details not verified."
+  },
+  {
+    "id": "T8.1",
+    "name": "Account dialog: honest 'Not connected' status, no fake login form",
+    "result": "PASS",
+    "expected": "status table; no password input",
+    "actual": "You're exploring as a guest. Everything is saved in this browser only. This is not an account: clearing the browser removes it, and anyone using this device can see it. Sign-in methods and their statu"
+  },
+  {
+    "id": "T8.2",
+    "name": "Guest is clearly labelled as device-only, not an account",
+    "result": "PASS",
+    "expected": "guest label + explanation",
+    "actual": "Guest"
+  },
+  {
+    "id": "T8.3",
+    "name": "Invite link without the server: explained, token removed from the address bar",
+    "result": "PASS",
+    "expected": "message + clean URL",
+    "actual": "{\"inv\":\"This invitation link needs the Wishly server, which isn't connected in this copy of the app.\",\"url\":\"http://127.0.0.1:8765/index.html\"}"
+  },
+  {
+    "id": "T9.1",
+    "name": "Arabic switches the whole page to RTL",
+    "result": "PASS",
+    "expected": "rtl / ar",
+    "actual": "[\"rtl\",\"ar\"]"
+  },
+  {
+    "id": "T9.2",
+    "name": "No untranslated English in Arabic screens, dialogs, empty states",
+    "result": "PASS",
+    "expected": "no stray English words",
+    "actual": "{}"
+  },
+  {
+    "id": "T9.3",
+    "name": "No missing translation keys at run time",
+    "result": "PASS",
+    "expected": "0",
+    "actual": "[]"
+  },
+  {
+    "id": "T9.4",
+    "name": "Voice language is separate from interface language",
+    "result": "PASS",
+    "expected": "UI ar, voice en-US",
+    "actual": "مساء الخير"
+  },
+  {
+    "id": "T9.5",
+    "name": "Language choice persists after refresh",
+    "result": "PASS",
+    "expected": "rtl",
+    "actual": ""
+  },
+  {
+    "id": "T9.6",
+    "name": "No page errors in Arabic flows",
+    "result": "PASS",
+    "expected": "none",
+    "actual": "[]"
+  },
+  {
+    "id": "T10.1",
+    "name": "First Tab reaches the skip link",
+    "result": "PASS",
+    "expected": "skip link focused",
+    "actual": "<a class=\"skip\" href=\"#main\" data-t=\"skip\">Skip to main content</a>"
+  },
+  {
+    "id": "T10.2",
+    "name": "Visible focus outline on keyboard focus",
+    "result": "PASS",
+    "expected": "solid 3px",
+    "actual": "solid 3px"
+  },
+  {
+    "id": "T10.3",
+    "name": "Dialog opens from keyboard, Escape closes and focus returns",
+    "result": "PASS",
+    "expected": "returns to Accessibility button",
+    "actual": "<button class=\"a11y-btn\" data-action=\"a11y\" aria-haspopup=\"d"
+  },
+  {
+    "id": "T10.4",
+    "name": "No dead buttons: every action in the UI has a handler",
+    "result": "PASS",
+    "expected": "0 unhandled actions",
+    "actual": "[]"
+  },
+  {
+    "id": "T10.5",
+    "name": "All visible controls are labelled",
+    "result": "PASS",
+    "expected": "0 unlabeled",
+    "actual": "[]"
+  },
+  {
+    "id": "T10.6a",
+    "name": "Mobile 360 px (en): no horizontal scrolling",
+    "result": "PASS",
+    "expected": "overflow 0 on every screen",
+    "actual": "{\"wish\":0,\"matches\":0,\"details\":0,\"trips\":0,\"profile\":0}"
+  },
+  {
+    "id": "T10.6b",
+    "name": "Mobile 360 px (ar): no horizontal scrolling",
+    "result": "PASS",
+    "expected": "overflow 0 on every screen",
+    "actual": "{\"wish\":0,\"matches\":0,\"details\":0,\"trips\":0,\"profile\":0}"
+  },
+  {
+    "id": "T11.1",
+    "name": "On claude.ai the viewer's private document is used (mocked runtime)",
+    "result": "PASS",
+    "expected": "saved in data/users/<id>/wishly, not localStorage",
+    "actual": "{\"saved\":{\"c1\":\"2026-10-18T17:33:29.345Z\"}}"
+  },
+  {
+    "id": "T11.2",
+    "name": "Persists across reloads in that mode (mocked runtime)",
+    "result": "PASS",
+    "expected": "c1 still saved",
+    "actual": ""
+  },
+  {
+    "id": "T12.1",
+    "name": "Delete my data needs two taps and clears the device data",
+    "result": "PASS",
+    "expected": "armed, then cleared",
+    "actual": "{\"armed\":\"Tap again to confirm\",\"after\":null}"
+  },
+  {
+    "id": "T13.1",
+    "name": "Sign-up validates username and password with clear messages",
+    "result": "PASS",
+    "expected": "username rule, then password rule",
+    "actual": "{\"e1\":\"3–30 characters: lowercase letters, numbers, dot or underscore.\",\"e2\":\"At least 10 characters, with letters and numbers.\"}"
+  },
+  {
+    "id": "T13.2",
+    "name": "Show / hide password toggles the field",
+    "result": "PASS",
+    "expected": "type=text, pressed",
+    "actual": "text"
+  },
+  {
+    "id": "T13.3",
+    "name": "Successful sign-up asks to confirm the email (no instant fake login)",
+    "result": "PASS",
+    "expected": "check-email notice; still guest",
+    "actual": "Check your email and open the link to confirm your account. Then sign in."
+  },
+  {
+    "id": "T13.4",
+    "name": "Sign-in before confirming shows the reason and a resend button",
+    "result": "PASS",
+    "expected": "message + resend",
+    "actual": "Please confirm your email first. Check your inbox."
+  },
+  {
+    "id": "T13.5",
+    "name": "Wrong password gives a useful error",
+    "result": "PASS",
+    "expected": "wrong credentials message",
+    "actual": "Email or password is wrong."
+  },
+  {
+    "id": "T13.6",
+    "name": "After confirming, sign-in switches to the account (header shows @username)",
+    "result": "PASS",
+    "expected": "@samaa_test",
+    "actual": "@samaa_test"
+  },
+  {
+    "id": "T13.7",
+    "name": "No password stored in the browser",
+    "result": "PASS",
+    "expected": "password absent from localStorage",
+    "actual": ""
+  },
+  {
+    "id": "T13.8",
+    "name": "Account mode: saved place and trip go to the server store",
+    "result": "PASS",
+    "expected": "1 trip; server mode text",
+    "actual": "Saved to your Wishly account."
+  },
+  {
+    "id": "T13.9",
+    "name": "Invite link is created with only a token (no private data in the URL)",
+    "result": "PASS",
+    "expected": "https://wishly.example/#invite=<token>",
+    "actual": "https://wishly.example/#invite=a72xzg6aku5r1f3exjqtdjfo0ntm6vexd"
+  },
+  {
+    "id": "T13.10",
+    "name": "Owner can revoke an invite link",
+    "result": "PASS",
+    "expected": "link shows Revoked",
+    "actual": "Create a link and send it yourself. People who open it and sign in can accept or decline. You can revoke a link at any time. Create invite link Invite links Created 18 Oct 2026 · used 0/20 · Revoked Invites show the place, date, group size and organizer name only: never anyone's location, profile or access needs."
+  },
+  {
+    "id": "T13.11",
+    "name": "Opening a revoked invite shows the revoked message",
+    "result": "PASS",
+    "expected": "revoked message",
+    "actual": "This invitation link was revoked by the organizer."
+  },
+  {
+    "id": "T13.12",
+    "name": "Opening an invalid invite shows the invalid message",
+    "result": "PASS",
+    "expected": "invalid message",
+    "actual": "This invitation link isn't valid. Ask for a new one."
+  },
+  {
+    "id": "T13.13",
+    "name": "Account mode: rating 1 creates the reviewer's exclusion",
+    "result": "PASS",
+    "expected": "c1 excluded",
+    "actual": ""
+  },
+  {
+    "id": "T13.14",
+    "name": "Session persists across refresh; data reloads from the account",
+    "result": "PASS",
+    "expected": "trip + saved after reload",
+    "actual": ""
+  },
+  {
+    "id": "T13.15",
+    "name": "Sign out returns to guest; account data is not shown as guest data",
+    "result": "PASS",
+    "expected": "Guest, 0 trips",
+    "actual": "0"
+  },
+  {
+    "id": "T13.16",
+    "name": "Log back in: account data is back",
+    "result": "PASS",
+    "expected": "1 trip",
+    "actual": "1"
+  },
+  {
+    "id": "T13.17",
+    "name": "No page errors in server-mode flows",
+    "result": "PASS",
+    "expected": "none",
+    "actual": "[]"
+  }
+]
