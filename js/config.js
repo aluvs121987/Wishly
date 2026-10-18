@@ -11,7 +11,7 @@
 window.WISHLY_CONFIG = {
   supabaseUrl: "https://mxvrwlathmwqtcasjzjp.supabase.co",
   supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im14dnJ3bGF0aG13cXRjYXNqempwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIzMzgyNDgsImV4cCI6MjEwNzkxNDI0OH0.WAjzXkGpsUOw2_aWgE8aH5Fmz_sOMI5dfFNPHsQbQ5k",  // public anon key; RLS protects the data
-  siteUrl: "https://aluvs121987.github.io/wishly/",
+  siteUrl: "https://aluvs121987.github.io/Wishly/",
   providers: {              // switch on only after the provider is configured in Supabase (SETUP.md §4)
     google: false,
     facebook: false
