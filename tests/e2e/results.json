@@ -39,7 +39,7 @@
     "name": "With a verified Maadi pet-friendly café (test fixture) it is confirmed, priced for 2",
     "result": "PASS",
     "expected": "fx1 confirmed, EGP 300 × 2 = EGP 600",
-    "actual": "{\"conf2\":[\"fx1\"],\"meta\":\"Food · Maadi · EGP 300 per person × 2 = EGP 600 · about 62 min by car from New Cairo (rough estimate)\"}"
+    "actual": "{\"conf2\":[\"fx1\"],\"meta\":\"Food · Maadi · EGP 300 per person × 2 = EGP 600\"}"
   },
   {
     "id": "T1.7",
@@ -116,7 +116,7 @@
     "name": "Location requested only on click; accuracy shown",
     "result": "PASS",
     "expected": "idle before click; '~20 m' after",
-    "actual": "{\"before\":\"Device location is not used unless you press “Use my current location”.\",\"st\":\"Using your device location (accurate to about 20 m, read at 20:05). It stays on this screen only and is not saved.\"}"
+    "actual": "{\"before\":\"Device location is not used unless you press “Use my current location”.\",\"st\":\"Using your device location (accurate to about 20 m, read at 20:50). It stays on this screen only and is not saved.\"}"
   },
   {
     "id": "T4.2",
@@ -193,7 +193,7 @@
     "name": "Visited → rating 2 explains and creates a personal exclusion",
     "result": "PASS",
     "expected": "exclusion c1 (rating); toast explains",
-    "actual": "{\"ex\":{\"c1\":{\"reason\":\"rating\",\"at\":\"2026-10-21T17:05:35.740Z\",\"tripId\":\"2c1cb504-e48d-4b0d-90a8-1ae1a1cdff66\"}},\"toast\":\"Rating saved. Garden Courtyard Café is now hidden from your future results.\"}"
+    "actual": "{\"ex\":{\"c1\":{\"reason\":\"rating\",\"at\":\"2026-10-21T17:50:52.480Z\",\"tripId\":\"b4e96b4c-b8df-4467-b4ca-2e82ba80e2ff\"}},\"toast\":\"Rating saved. Garden Courtyard Café is now hidden from your future results.\"}"
   },
   {
     "id": "T5.4",
@@ -438,7 +438,7 @@
     "name": "On claude.ai the viewer's private document is used (mocked runtime)",
     "result": "PASS",
     "expected": "saved in data/users/<id>/wishly, not localStorage",
-    "actual": "{\"saved\":{\"c1\":\"2026-10-21T17:05:49.273Z\"}}"
+    "actual": "{\"saved\":{\"c1\":\"2026-10-21T17:51:05.561Z\"}}"
   },
   {
     "id": "T11.2",
@@ -515,7 +515,7 @@
     "name": "Invite link is created with only a token (no private data in the URL)",
     "result": "PASS",
     "expected": "https://wishly.example/#invite=<token>",
-    "actual": "https://wishly.example/#invite=9gqjcx80grgo3dq7fcc8bdyf1wo7hys"
+    "actual": "https://wishly.example/#invite=k1glszz6ezlqu1ayrgdvvrny64dmza7ja"
   },
   {
     "id": "T13.10",
@@ -605,8 +605,8 @@
     "id": "T14.5",
     "name": "Details show the phone, price range and source date",
     "result": "PASS",
-    "expected": "phone, E£1–200, source",
-    "actual": "Food · Café · Sourced Location Maadi — Street 253, Maadi Pin taken from the place's public Google Maps listing. Open the Google Maps listing Source: Google Maps listing · checked 21 Oct 2026 Price EGP 1–200 per person × 1 = EGP 1–200 Transport: not included · Taxes and service: unknown Pets Pets allowed (Dog) Source: Google Maps listing · checked 21 Oct 2026 Wheelchair and access • Step-free entra"
+    "expected": "phone, up to EGP 200, source",
+    "actual": "Food · Café · Sourced Location Maadi — Street 253, Maadi Pin taken from the place's public Google Maps listing. Open the Google Maps listing Source: the place's Google Maps listing · checked 21 Oct 2026 Price Up to EGP 200 per person Transport: not included · Taxes and service: unknown Pets Pets allowed (Dog) Source: the place's Google Maps listing · checked 21 Oct 2026 Wheelchair and access • Ste"
   },
   {
     "id": "T14.6",
@@ -620,7 +620,7 @@
     "name": "Menu link and 'outdoor only' dog rule are shown (Brew Loops)",
     "result": "PASS",
     "expected": "menu + restriction",
-    "actual": "Food · Café · Sourced Location Maadi — 23 Street 232, Maadi Pin taken from the place's public Google Maps listing. Open the Google Maps listing Source: Google Maps listing · checked 21 Oct 2026 Price EGP 200–400 per person × 1 = EGP 200–400 Transport: not included · Taxes and service: unknown Pets Pets allowed (Dog) Dogs in the outdoor seating only Source: Google Maps listing · checked 21 Oct 2026"
+    "actual": "Food · Café · Sourced Location Maadi — 23 Street 232, Maadi Pin taken from the place's public Google Maps listing. Open the Google Maps listing Source: the place's Google Maps listing · checked 21 Oct 2026 Price EGP 200–400 per person Transport: not included · Taxes and service: unknown Pets Pets allowed (Dog) Dogs in the outdoor seating only Source: the place's Google Maps listing · checked 21 Oc"
   },
   {
     "id": "T14.8",

@@ -435,7 +435,7 @@ const cardIds = (page, which) => page.$$eval(`#matchArea ol.cards ${which === "a
     rec("T14.4", "Results say the data is from Google Maps listings, not called", /Google Maps listings/.test(await text(page, "#matchArea")), "sourced note shown", "");
     await page.click("#matchArea [data-action=details][data-id=gm-16363566779832845154]"); await page.waitForTimeout(150);
     const d1 = await text(page, "#dlgBody");
-    rec("T14.5", "Details show the phone, price range and source date", /\+20 10 64115531/.test(d1) && /EGP 1–200/.test(d1) && /Google Maps listing/.test(d1) && /2026|21 Oct/.test(d1), "phone, E£1–200, source", d1.slice(0, 400));
+    rec("T14.5", "Details show the phone, price range and source date", /\+20 10 64115531/.test(d1) && /Up to EGP 200 per person/.test(d1) && /Google Maps listing/.test(d1) && /2026|21 Oct/.test(d1), "phone, up to EGP 200, source", d1.slice(0, 400));
     rec("T14.6", "Details offer directions to the listing's pin", !!(await page.$("#dlgBody a[href*='cid=16363566779832845154']")) && /Pin taken from/.test(d1), "maps link", "");
     await page.keyboard.press("Escape");
     await page.click("#matchArea [data-action=details][data-id=gm-11331790703370617337]"); await page.waitForTimeout(150);

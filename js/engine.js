@@ -39,13 +39,23 @@
     Learning: /\b(learn|class|course|workshop|lesson|skill|curious)\b|اتعلم|تعلم|كورس|ورشه|درس/
   };
   const KIND_KW = { cafe: /\bcaf[eé]s?(?![a-z])|\bcoffee\s*(shop|house)?\b|كافيه|كافي|قهوه|كوفي/ };
+  // everyday names people use for an area ("التجمع", "Dokki") → the catalog area
+  const AREA_ALIASES = [
+    ["New Cairo", /\b(fifth|5th) settlement\b|\btagamo[a3]\b|التجمع|القاهره الجديده/],
+    ["Giza", /\b(dokki|mohandes+in|agouza)\b|الدقي|المهندسين|العجوزه/],
+    ["Downtown", /\b(wust|wist) el balad\b|\bdowntown\b|وسط البلد/],
+    ["Maadi", /\bdegla\b|دجله/],
+    ["Heliopolis", /\b(korba|masr el gedida)\b|الكوربه|مصر الجديده/],
+    ["6th of October", /\boctober\b|اكتوبر/],
+    ["Zamalek", /\bzamalek\b|زمالك/]
+  ];
   const MOOD = {
     relax: /\b(relax\w*|calm|quiet|tired|rest|reset|peace\w*|stress\w*|unwind)\b|هادي|هدوء|ريلاكس|راحه|تعبان|مضغوط/,
     celebrate: /\b(birthday|celebrat\w*|anniversar\w*|special|party|memorable)\b|عيد ميلاد|احتفال|مناسبه|مميز/,
     learn: /\b(learn|curious|class|workshop)\b|اتعلم|تعلم|كورس|ورشه/,
     fun: /\b(fun|night out|enjoy|exciting|entertain\w*)\b|فرفشه|مزاج/,
     outdoor: /\b(outdoors?|outside|nature|park|fresh air|sunset)\b|طبيعه|هوا طلق/,
-    romantic: /\b(romantic|date|wife|husband|partner|couple|fianc\w*)\b|مراتي|جوزي|خطيب/,
+    romantic: /\b(romantic|date|wife|husband|partner|couple|fianc\w*)\b|رومانس|مراتي|جوزي|خطيب/,
     gift: /\b(gift|present)\b|هدي|هدايا/,
     family: /\b(family|kids|child\w*|parents)\b|عيله|عائله|اولاد|اطفال/,
     value: /\b(cheap|affordab\w*|value|save money|saving|good deal)\b|رخيص|توفير/
@@ -113,6 +123,7 @@
     if (!area) for (const [en, ar] of Object.entries(W.AREA_AR || {})) {
       const n = norm(ar); if (n.length > 3 && (t.includes(n) || t.includes(n.replace(/^ال/, "")))) { if ((W.AREAS || []).includes(en)) { area = en; break; } }
     }
+    if (!area) for (const [a, re] of AREA_ALIASES) if (re.test(t)) { area = a; break; }
     out.area = area;
     const negated = PET_NEG.test(t);
     const type = PET_DOG.test(t) ? "dog" : PET_CAT.test(t) ? "cat" : null;
@@ -272,7 +283,7 @@
       const p = place.pets || { policy: "unknown" };
       if (p.policy === "not_allowed") failures.push({ code: "pets_not_allowed" });
       else if (p.policy === "allowed" && p.types && p.types.length && !p.types.includes(c.pet.type)) unknowns.push({ code: "pets_unconfirmed", v: "type" });
-      else if (p.policy === "allowed" && evidenceOk(place, "pets")) met.push({ code: "pets_ok", v: c.pet.type });
+      else if (p.policy === "allowed" && evidenceOk(place, "pets")) met.push({ code: "pets_ok", v: c.pet.type, listed: place.status !== "verified" });
       else unknowns.push({ code: "pets_unconfirmed", v: p.policy === "allowed" ? "claimed" : "unknown" });
     }
 
@@ -282,12 +293,12 @@
         wc = wheelchairCheck(place);
         if (place.comesToYou) { met.push({ code: "comes_to_you_access" }); continue; }
         if (wc.state === "unsuitable") failures.push({ code: "wheelchair_unsuitable", v: wc.fails });
-        else if (wc.state === "suitable") met.push({ code: "wheelchair_ok" });
+        else if (wc.state === "suitable") met.push({ code: "wheelchair_ok", listed: place.status !== "verified" });
         else unknowns.push({ code: "wheelchair_unconfirmed", v: wc.missing.length ? wc.missing : ["wc_evidence"], evidence: wc.evidence });
       } else {
         const has = NEEDS[n].core.some((f) => (place.access || []).includes(f));
         if (!evidenceOk(place, "access")) unknowns.push({ code: "access_unconfirmed", v: n, claimed: has });
-        else if (has) met.push({ code: "access_ok", v: n });
+        else if (has) met.push({ code: "access_ok", v: n, listed: place.status !== "verified" });
         else failures.push({ code: "access_unsupported", v: n });
       }
     }
@@ -306,7 +317,8 @@
     if (c.kind && place.kind === c.kind) add("kind", 6, c.kind);
     const words = (place.tags || []).filter((w) => !COMMON_TAGS.has(w)).concat(norm(place.name.en).split(/[^a-z]+/)).filter((w) => w.length > 3 && !STOP.has(w));
     if (words.some((w) => new RegExp("\\b" + w).test(norm(c.text)))) add("name_hit", 10);
-    const mh = c.moods.filter((m) => (place.tags || []).includes(m));
+    const MOOD_TAGS = { relax: ["relax", "quiet"] };
+    const mh = c.moods.filter((m) => (MOOD_TAGS[m] || [m]).some((tg) => (place.tags || []).includes(tg)));
     if (mh.length) add("mood", Math.min(18, mh.length * 6), mh);
     const pref = { "Good value": "value", "Quiet places": "quiet", "Outdoors": "outdoor", "Family friendly": "family", "Celebrations": "celebrate", "Learning something new": "learn" };
     for (const [p, tag] of Object.entries(pref)) if (c.prefs.includes(p) && (place.tags || []).includes(tag)) add("pref", 4, p);

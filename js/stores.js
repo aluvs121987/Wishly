@@ -14,7 +14,7 @@
 (function (W) {
   "use strict";
 
-  const DEFAULT_PROFILE = () => ({ name: "", prefs: [], needs: [], area: "New Cairo", startCoords: null, petOwner: false, petType: "dog",
+  const DEFAULT_PROFILE = () => ({ name: "", prefs: [], needs: [], area: "", startCoords: null, petOwner: false, petType: "dog",
     bringPetByDefault: false, budgetPerPerson: 0, groupSize: 1, bank: "", cardTier: "" });
   const PREFS = ["Good value", "Quiet places", "Within 30 min", "For two", "Family friendly", "Outdoors", "Celebrations", "Learning something new"];
   const NEED_IDS = ["mobility", "vision", "hearing", "speech", "cognitive"];

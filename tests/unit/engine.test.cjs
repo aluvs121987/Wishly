@@ -35,6 +35,11 @@ check("'under' = hard cap", p.budget.mode === "cap" && p.budget.amount === 1000,
 p = E.parseWish("budget 1400 total for both of us");
 check("'total' basis recognised", p.budget.basis === "total", p.budget);
 
+check("AR: التجمع → New Cairo", E.parseWish("عشا في التجمع الخامس").area === "New Cairo", E.parseWish("عشا في التجمع الخامس").area);
+check("AR: الدقي → Giza (Dokki)", E.parseWish("كافيه في الدقي").area === "Giza", E.parseWish("كافيه في الدقي").area);
+check("EN: Fifth Settlement → New Cairo", E.parseWish("brunch in fifth settlement").area === "New Cairo");
+check("no area words → no area", E.parseWish("coffee somewhere").area === null);
+
 // Structured fields win over text ------------------------------------------
 c = E.buildConstraints(E.parseWish("café in Zamalek 500 per person for 3 people"), { areaSet: true, area: "Maadi", perPersonSet: true, perPerson: 700, peopleSet: true, people: 2 }, {});
 check("structured area wins over text area", c.where.area === "Maadi", c.where);

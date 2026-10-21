@@ -179,7 +179,7 @@
       const p = await S.server.previewInvite(token);
       const place = byId(p.place_id);
       openDialog(t("inviteTitle"), `<p>${esc(t("inviteFrom", { name: p.organizer || t("someone") }))}</p>
-        <div class="dest"><b>${esc(S.lang === "ar" ? (p.place_name_ar || p.place_name_en) : p.place_name_en)}</b><small>${esc(an(p.area))}${p.starts_at ? " · " + esc(E.formatCairo(p.starts_at, S.lang)) + " " + esc(t("cairoTime")) : ""} · ${esc(t("peopleN", { n: num(p.people) }))}${p.budget_per_person ? " · " + esc(t("ppShort", { v: egp(p.budget_per_person) })) : ""}</small></div>
+        <div class="dest"><b>${esc(S.lang === "ar" ? (p.place_name_ar || p.place_name_en) : p.place_name_en)}</b><small>${esc(an(p.area))}${p.starts_at ? " · " + esc(E.formatCairo(p.starts_at, S.lang)) + " " + esc(t("cairoTime")) : ""} · ${esc(ppl(p.people))}${p.budget_per_person ? " · " + esc(t("ppShort", { v: egp(p.budget_per_person) })) : ""}</small></div>
         ${place && place.status === "demo" ? `<p class="demo-banner">${esc(t("demoPlaceNote"))}</p>` : ""}
         ${p.my_status ? `<p>${esc(t("inviteYourStatus", { s: t("pstatus_" + p.my_status) }))}</p>` : ""}
         <p class="mini">${esc(t("invitePrivacy"))}</p>
@@ -217,7 +217,7 @@
     const cur = $("#fArea").value, pcur = S.profile.area;
     $("#fArea").innerHTML = `<option value="">${esc(t("anyArea"))}</option>` + W.AREAS.map((a) => `<option value="${esc(a)}">${esc(an(a))}</option>`).join("");
     $("#fArea").value = cur;
-    $("#pArea").innerHTML = W.AREAS.map((a) => `<option value="${esc(a)}">${esc(an(a))}</option>`).join(""); $("#pArea").value = pcur;
+    $("#pArea").innerHTML = `<option value="">${esc(t("areaNotSet"))}</option>` + W.AREAS.map((a) => `<option value="${esc(a)}">${esc(an(a))}</option>`).join(""); $("#pArea").value = pcur;
   }
   function setSrc(el, src) { el.dataset.src = src || ""; const lab = el.closest("label"); if (!lab) return; let m = $(".from-text", lab); if (src === "text") { if (!m) { m = document.createElement("span"); m.className = "from-text"; lab.appendChild(m); } m.textContent = t("fromWish"); } else if (m) m.remove(); }
   function applyProfileDefaultsToForm() {
@@ -333,10 +333,16 @@
   /* ---------------- results ---------------- */
   // once real (sourced or verified) places exist, the fictional demo records stay out of results
   function searchPool() { if (!S.realCatalog) return S.places; const real = S.places.filter((p) => p.status !== "demo"); return real.length ? real : S.places; }
+  function ppl(n) { return n === 1 ? t("peopleOne") : n === 2 && S.lang === "ar" ? t("peopleTwo") : t("peopleN", { n: num(n) }); }
   function costLine(cost) {
     if (!cost) return t("priceUnknown");
-    if (cost.perPerson && cost.open) return t("costPPOpen", { unit: egp(cost.unit), n: num(cost.people), total: egp(cost.total) });
-    if (cost.perPerson && cost.min !== null) return t("costPPRange", { min: egp(cost.min), unit: num(cost.unit), n: num(cost.people), minTotal: egp(cost.minTotal), total: num(cost.total) });
+    if (cost.perPerson && (cost.open || cost.min !== null)) {
+      // Google lists ranges like "E£1–200": a lower end of 1 just means "up to 200"
+      const lo = cost.open ? cost.unit : cost.min > 1 ? cost.min : null, one = cost.people === 1;
+      const v = { min: num(lo || 0), max: num(cost.unit), n: num(cost.people), minTotal: num((lo || 0) * cost.people), total: num(cost.total) };
+      const key = cost.open ? "costFrom" : lo ? "costRange" : "costUpTo";
+      return t(key + (one ? "1" : ""), v);
+    }
     if (cost.perPerson) return t("costPP", { unit: egp(cost.unit), n: num(cost.people), total: egp(cost.total) });
     return t("costFixed", { unit: egp(cost.unit), basis: t("basis_" + cost.basis) });
   }
@@ -352,9 +358,9 @@
       case "comes_to_you_access": return t("req_comes_access");
       case "budget": return t("req_budget", { v: egp(v) });
       case "budget_min": return t("req_budget_min", { v: egp(v) });
-      case "pets_ok": return t("req_pets_ok", { v: t(v === "other" ? "otherPet" : v) });
-      case "wheelchair_ok": return t("req_wheel_ok");
-      case "access_ok": return t("req_access_ok", { v: t("need_" + v) });
+      case "pets_ok": return t(x.listed ? "req_pets_listed" : "req_pets_ok", { v: t(v === "other" ? "otherPet" : v) });
+      case "wheelchair_ok": return t(x.listed ? "req_wheel_listed" : "req_wheel_ok");
+      case "access_ok": return t(x.listed ? "req_access_listed" : "req_access_ok", { v: t("need_" + v) });
       case "pets_unconfirmed": return t({ type: "unk_pets_type", claimed: "unk_pets_claimed" }[v] || "unk_pets");
       case "wheelchair_unconfirmed": return t("unk_wheel", { list: v.map((k) => t(k)).join(S.lang === "ar" ? "، " : ", ") });
       case "access_unconfirmed": return t(x.claimed ? "unk_access_claimed" : "unk_access", { v: t("need_" + v) });
@@ -420,7 +426,7 @@
     if (c.where.mode === "area") chips.push(t("chipArea", { v: an(c.where.area) }));
     else if (c.where.mode === "device") chips.push(t("chipRadius", { km: num(c.where.radiusKm) }));
     else chips.push(t("anyArea"));
-    chips.push(t("peopleN", { n: num(c.people) }));
+    chips.push(ppl(c.people));
     if (c.budget) chips.push(t(c.budget.mode === "over" ? "chipBudgetMin" : c.budget.mode === "around" ? "chipBudgetAround" : "chipBudget", { pp: egp(c.budget.perPerson), n: num(c.people), total: egp(c.budget.total) }));
     c.cats.forEach((x) => chips.push(t("cat_" + x))); if (c.kind) chips.push(t("kind_" + c.kind));
     if (c.pet.accompanying) chips.push(t("chipPet", { v: t(c.pet.type === "other" ? "otherPet" : c.pet.type) }));
@@ -469,7 +475,8 @@
 
   /* ---------------- place details ---------------- */
   function triState(v) { return v === true ? t("yes") : v === false ? t("no") : t("unknown"); }
-  function srcLine(source, checked) { return source && checked ? t("sourceLine", { src: source, date: dateOnly(checked) }) : t("noSource"); }
+  const SRC_KEYS = { "Google Maps listing": "srcGoogleListing" };
+  function srcLine(source, checked) { return source && checked ? t("sourceLine", { src: SRC_KEYS[source] ? t(SRC_KEYS[source]) : source, date: dateOnly(checked) }) : t("noSource"); }
   function openDetails(id) {
     const p = byId(id); if (!p) return;
     const c = S.lastConstraints || E.buildConstraints(E.parseWish(""), readForm(true), S.profile);
@@ -530,7 +537,7 @@
     const msg = withMessage ? encodeURIComponent(askMessage(p, withMessage.includeAccess)) : "";
     if (wa) out.push(`<a class="btn" target="_blank" rel="noopener noreferrer" href="https://wa.me/${esc(wa)}${msg ? "?text=" + msg : ""}">${esc(t("whatsappText"))}</a>`);
     if (sms) out.push(`<a class="btn" href="sms:${esc(phone.replace(/[ ()-]/g, ""))}${msg ? "?body=" + msg : ""}">${esc(t("smsText"))}</a>`);
-    if (phone) out.push(`<a class="btn" href="tel:${esc(phone.replace(/[ ()-]/g, ""))}">${esc(t("call", { n: phone }))}</a>`);
+    if (phone) out.push(`<a class="btn" href="tel:${esc(phone.replace(/[ ()-]/g, ""))}">${esc(t("call", { n: "\u2066" + phone + "\u2069" }))}</a>`);
     const web = safeUrl(ct.website); if (web) out.push(`<a class="btn" target="_blank" rel="noopener noreferrer" href="${esc(web)}">${esc(t("website"))}</a>`);
     for (const s of Array.isArray(ct.social) ? ct.social : []) { const u = safeUrl(s.url); if (u) out.push(`<a class="btn" target="_blank" rel="noopener noreferrer" href="${esc(u)}">${esc(s.label || t("socialPage"))}</a>`); }
     return out.length ? `<div class="row">${out.join("")}</div>` : "";
@@ -749,7 +756,7 @@
     return `<li class="item">
       <h3>${esc(trip.title || pn(p))} <span class="badge ${done ? "ok" : "muted"}">${esc(t("tstatus_" + trip.status))}</span>${p.status === "demo" ? ` <span class="badge demo">${esc(t("demoBadge"))}</span>` : ""}</h3>
       <p class="meta">${trip.title ? esc(pn(p)) + " · " : ""}${esc(an(p.area))} · ${trip.startsAt ? esc(E.formatCairo(trip.startsAt, S.lang)) + " " + esc(t("cairoTime")) : esc(t("noDate"))}</p>
-      <p class="meta">${esc(t("peopleN", { n: num(trip.people) }))}${trip.budgetPerPerson ? " · " + esc(t("totalLine", { pp: egp(trip.budgetPerPerson), n: num(trip.people), total: egp(trip.budgetPerPerson * trip.people) })) : ""} · ${esc(t("placeCost", { v: costLine(cost) }))}</p>
+      <p class="meta">${esc(ppl(trip.people))}${trip.budgetPerPerson ? " · " + esc(t("totalLine", { pp: egp(trip.budgetPerPerson), n: num(trip.people), total: egp(trip.budgetPerPerson * trip.people) })) : ""} · ${esc(t("placeCost", { v: costLine(cost) }))}</p>
       ${trip.myVisitedAt ? `<p class="meta">${esc(t("visitedOn", { d: dateOnly(trip.myVisitedAt) }))}</p>` : ""}
       ${participantsLine(trip)}
       ${trip.myReview ? `<p>${esc(t("myRatingLine", { p: num(trip.myReview.place), o: trip.myReview.org ? num(trip.myReview.org) : "–", tr: trip.myReview.transport ? num(trip.myReview.transport) : "–" }))}</p>` : ""}
