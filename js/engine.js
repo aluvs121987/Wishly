@@ -201,7 +201,9 @@
   function groupCost(place, people) {
     if (!place.price || !(place.price.amount >= 0)) return null;
     const pp = place.price.basis === "per_person";
-    return { unit: place.price.amount, basis: place.price.basis, people, total: pp ? place.price.amount * people : place.price.amount, perPerson: pp };
+    const min = place.price.min >= 0 && place.price.min < place.price.amount ? place.price.min : null;
+    return { unit: place.price.amount, basis: place.price.basis, people, total: pp ? place.price.amount * people : place.price.amount, perPerson: pp,
+      min, minTotal: min === null ? null : (pp ? min * people : min), open: !!place.price.open };
   }
   function evidenceOk(place, kind) {
     if (place.status === "demo") return false;
@@ -224,7 +226,7 @@
     const entrance = w.stepFree === true || w.ramp === true ? true : (w.stepFree === false && w.ramp !== true ? false : null);
     if (entrance === false) fails.push("wc_entrance"); else if (entrance === null) missing.push("wc_entrance");
     if (w.interior === false) fails.push("wc_interior"); else if (w.interior !== true) missing.push("wc_interior");
-    const level = w.groundFloor === true || w.lift === true ? true : (w.groundFloor === false && w.lift === false ? false : null);
+    const level = w.groundFloor === true || w.lift === true || w.reachable === true ? true : (w.groundFloor === false && w.lift === false ? false : null);
     if (level === false) fails.push("wc_level"); else if (level === null) missing.push("wc_level");
     if (STAY_KINDS.has(place.kind)) { if (w.toilet === false) fails.push("wc_toilet"); else if (w.toilet !== true) missing.push("wc_toilet"); }
     const evidence = evidenceOk(place, "access");
@@ -269,7 +271,7 @@
     if (c.pet && c.pet.accompanying) {
       const p = place.pets || { policy: "unknown" };
       if (p.policy === "not_allowed") failures.push({ code: "pets_not_allowed" });
-      else if (p.policy === "allowed" && p.types && p.types.length && !p.types.includes(c.pet.type)) failures.push({ code: "pet_type", v: c.pet.type });
+      else if (p.policy === "allowed" && p.types && p.types.length && !p.types.includes(c.pet.type)) unknowns.push({ code: "pets_unconfirmed", v: "type" });
       else if (p.policy === "allowed" && evidenceOk(place, "pets")) met.push({ code: "pets_ok", v: c.pet.type });
       else unknowns.push({ code: "pets_unconfirmed", v: p.policy === "allowed" ? "claimed" : "unknown" });
     }
@@ -336,7 +338,9 @@
     for (const x of all) if (x.ev.status === "excluded") for (const f of x.ev.failures) excludedCounts[f.code] = (excludedCounts[f.code] || 0) + 1;
     const scoreIt = (x) => Object.assign(x, wishScore(x.place, x.ev, c, ctx));
     const confirmed = all.filter((x) => x.ev.status === "confirmed").map(scoreIt).sort((a, b) => b.score - a.score);
-    const ask = all.filter((x) => x.ev.status === "ask").map(scoreIt).sort((a, b) => b.score - a.score);
+    // "Ask before choosing": fewest open questions first, then WishScore
+    const openQs = (x) => x.ev.unknowns.reduce((n, u) => n + (Array.isArray(u.v) ? u.v.length : 1), 0);
+    const ask = all.filter((x) => x.ev.status === "ask").map(scoreIt).sort((a, b) => openQs(a) - openQs(b) || b.score - a.score);
     // a wish that only names a feeling ("something outdoors") still has to match it
     const relevant = (x) => c.cats.length || c.kind || !c.moods.length || x.parts.some((p) => p.code === "mood" || p.code === "name_hit");
     const top = confirmed.filter(relevant).slice(0, ctx.limit || 5);

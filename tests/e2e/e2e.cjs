@@ -418,6 +418,34 @@ const cardIds = (page, which) => page.$$eval(`#matchArea ol.cards ${which === "a
     await ctx.close();
   }
 
+  /* ---------- T14 sourced places (public Google Maps listings) in server mode ---------- */
+  {
+    const real = require("../../tools/make_real_places_sql.cjs").rows;
+    const ctx = await browser.newContext({ viewport: { width: 1200, height: 900 } }); const page = await ctx.newPage();
+    page.errors = []; page.on("pageerror", (e) => page.errors.push(e.message));
+    await ctx.addInitScript((rows) => { window.__extraPlaces = rows; }, real);
+    await ctx.route("**/js/config.js", (r) => r.fulfill({ contentType: "text/javascript", body: 'window.WISHLY_CONFIG={supabaseUrl:"https://mock.supabase.test",supabaseAnonKey:"anon-test",siteUrl:"https://wishly.example/",providers:{google:false,facebook:false},manualLinking:false,facebookFriends:false,uberClientId:""};' }));
+    await ctx.route("https://cdn.jsdelivr.net/**", (r) => r.fulfill({ contentType: "text/javascript", body: fs.readFileSync(path.join(__dirname, "mock-supabase.js"), "utf8") }));
+    await page.goto(BASE); await page.waitForFunction(() => W.app && W.app.S.places && W.app.S.places.length > 60);
+    await page.click("#wish"); await wishAndCheck(page, "pet friendly café in Maadi with my dog"); await search(page);
+    const conf = await cardIds(page, "confirmed"), ask = await cardIds(page, "ask"), all = conf.concat(ask);
+    rec("T14.1", "Once real places exist, demo places are left out of results", all.length > 0 && all.every((id) => id.startsWith("gm-")), "only gm-* ids", all.slice(0, 8));
+    rec("T14.2", "Dog-friendly listings with a source count as matches (Genco)", conf.includes("gm-16363566779832845154"), "Genco in matches", conf);
+    rec("T14.3", "Listings without a pet policy go to Ask (Café Greco)", ask.includes("gm-6924498732573733792") && !conf.includes("gm-6924498732573733792"), "Café Greco in Ask", ask.slice(0, 10));
+    rec("T14.4", "Results say the data is from Google Maps listings, not called", /Google Maps listings/.test(await text(page, "#matchArea")), "sourced note shown", "");
+    await page.click("#matchArea [data-action=details][data-id=gm-16363566779832845154]"); await page.waitForTimeout(150);
+    const d1 = await text(page, "#dlgBody");
+    rec("T14.5", "Details show the phone, price range and source date", /\+20 10 64115531/.test(d1) && /EGP 1–200/.test(d1) && /Google Maps listing/.test(d1) && /2026|21 Oct/.test(d1), "phone, E£1–200, source", d1.slice(0, 400));
+    rec("T14.6", "Details offer directions to the listing's pin", !!(await page.$("#dlgBody a[href*='cid=16363566779832845154']")) && /Pin taken from/.test(d1), "maps link", "");
+    await page.keyboard.press("Escape");
+    await page.click("#matchArea [data-action=details][data-id=gm-11331790703370617337]"); await page.waitForTimeout(150);
+    const d2 = await text(page, "#dlgBody");
+    rec("T14.7", "Menu link and 'outdoor only' dog rule are shown (Brew Loops)", /outdoor seating only/i.test(d2) && !!(await page.$("#dlgBody a[href*='geideapos']")), "menu + restriction", d2.slice(0, 400));
+    await page.keyboard.press("Escape");
+    rec("T14.8", "No page errors with sourced places", page.errors.length === 0, "none", page.errors);
+    await ctx.close();
+  }
+
   await browser.close();
   fs.writeFileSync(path.join(__dirname, "results.json"), JSON.stringify(results, null, 2));
   const failed = results.filter((r) => r.result !== "PASS").length;

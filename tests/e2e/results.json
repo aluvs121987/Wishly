@@ -116,7 +116,7 @@
     "name": "Location requested only on click; accuracy shown",
     "result": "PASS",
     "expected": "idle before click; '~20 m' after",
-    "actual": "{\"before\":\"Device location is not used unless you press “Use my current location”.\",\"st\":\"Using your device location (accurate to about 20 m, read at 20:33). It stays on this screen only and is not saved.\"}"
+    "actual": "{\"before\":\"Device location is not used unless you press “Use my current location”.\",\"st\":\"Using your device location (accurate to about 20 m, read at 20:05). It stays on this screen only and is not saved.\"}"
   },
   {
     "id": "T4.2",
@@ -193,14 +193,14 @@
     "name": "Visited → rating 2 explains and creates a personal exclusion",
     "result": "PASS",
     "expected": "exclusion c1 (rating); toast explains",
-    "actual": "{\"ex\":{\"c1\":{\"reason\":\"rating\",\"at\":\"2026-10-18T17:33:15.984Z\",\"tripId\":\"a432a697-f744-4de2-b8bd-3f7583fc60c8\"}},\"toast\":\"Rating saved. Garden Courtyard Café is now hidden from your future results.\"}"
+    "actual": "{\"ex\":{\"c1\":{\"reason\":\"rating\",\"at\":\"2026-10-21T17:05:35.740Z\",\"tripId\":\"2c1cb504-e48d-4b0d-90a8-1ae1a1cdff66\"}},\"toast\":\"Rating saved. Garden Courtyard Café is now hidden from your future results.\"}"
   },
   {
     "id": "T5.4",
     "name": "Excluded section lists the place with Restore",
     "result": "PASS",
     "expected": "listed + Restore",
-    "actual": "A place you rate 1 or 2 is hidden from your own future results (never from anyone else's). Rating it 3 or more, or pressing Restore, brings it back. Garden Courtyard Café Hidden because you rated it 1–2 · 18 Oct 2026 Restore"
+    "actual": "A place you rate 1 or 2 is hidden from your own future results (never from anyone else's). Rating it 3 or more, or pressing Restore, brings it back. Garden Courtyard Café Hidden because you rated it 1–2 · 21 Oct 2026 Restore"
   },
   {
     "id": "T5.5",
@@ -438,7 +438,7 @@
     "name": "On claude.ai the viewer's private document is used (mocked runtime)",
     "result": "PASS",
     "expected": "saved in data/users/<id>/wishly, not localStorage",
-    "actual": "{\"saved\":{\"c1\":\"2026-10-18T17:33:29.345Z\"}}"
+    "actual": "{\"saved\":{\"c1\":\"2026-10-21T17:05:49.273Z\"}}"
   },
   {
     "id": "T11.2",
@@ -515,14 +515,14 @@
     "name": "Invite link is created with only a token (no private data in the URL)",
     "result": "PASS",
     "expected": "https://wishly.example/#invite=<token>",
-    "actual": "https://wishly.example/#invite=a72xzg6aku5r1f3exjqtdjfo0ntm6vexd"
+    "actual": "https://wishly.example/#invite=9gqjcx80grgo3dq7fcc8bdyf1wo7hys"
   },
   {
     "id": "T13.10",
     "name": "Owner can revoke an invite link",
     "result": "PASS",
     "expected": "link shows Revoked",
-    "actual": "Create a link and send it yourself. People who open it and sign in can accept or decline. You can revoke a link at any time. Create invite link Invite links Created 18 Oct 2026 · used 0/20 · Revoked Invites show the place, date, group size and organizer name only: never anyone's location, profile or access needs."
+    "actual": "Create a link and send it yourself. People who open it and sign in can accept or decline. You can revoke a link at any time. Create invite link Invite links Created 21 Oct 2026 · used 0/20 · Revoked Invites show the place, date, group size and organizer name only: never anyone's location, profile or access needs."
   },
   {
     "id": "T13.11",
@@ -569,6 +569,62 @@
   {
     "id": "T13.17",
     "name": "No page errors in server-mode flows",
+    "result": "PASS",
+    "expected": "none",
+    "actual": "[]"
+  },
+  {
+    "id": "T14.1",
+    "name": "Once real places exist, demo places are left out of results",
+    "result": "PASS",
+    "expected": "only gm-* ids",
+    "actual": "[\"gm-11588544727280211450\",\"gm-16363566779832845154\",\"gm-11331790703370617337\",\"gm-957833491559976803\",\"gm-1366595669593668610\",\"gm-14582253963385658807\",\"gm-14750427584110593159\",\"gm-5495091109107980514\"]"
+  },
+  {
+    "id": "T14.2",
+    "name": "Dog-friendly listings with a source count as matches (Genco)",
+    "result": "PASS",
+    "expected": "Genco in matches",
+    "actual": "[\"gm-11588544727280211450\",\"gm-16363566779832845154\",\"gm-11331790703370617337\"]"
+  },
+  {
+    "id": "T14.3",
+    "name": "Listings without a pet policy go to Ask (Café Greco)",
+    "result": "PASS",
+    "expected": "Café Greco in Ask",
+    "actual": "[\"gm-957833491559976803\",\"gm-1366595669593668610\",\"gm-14582253963385658807\",\"gm-14750427584110593159\",\"gm-5495091109107980514\",\"gm-6924498732573733792\"]"
+  },
+  {
+    "id": "T14.4",
+    "name": "Results say the data is from Google Maps listings, not called",
+    "result": "PASS",
+    "expected": "sourced note shown",
+    "actual": ""
+  },
+  {
+    "id": "T14.5",
+    "name": "Details show the phone, price range and source date",
+    "result": "PASS",
+    "expected": "phone, E£1–200, source",
+    "actual": "Food · Café · Sourced Location Maadi — Street 253, Maadi Pin taken from the place's public Google Maps listing. Open the Google Maps listing Source: Google Maps listing · checked 21 Oct 2026 Price EGP 1–200 per person × 1 = EGP 1–200 Transport: not included · Taxes and service: unknown Pets Pets allowed (Dog) Source: Google Maps listing · checked 21 Oct 2026 Wheelchair and access • Step-free entra"
+  },
+  {
+    "id": "T14.6",
+    "name": "Details offer directions to the listing's pin",
+    "result": "PASS",
+    "expected": "maps link",
+    "actual": ""
+  },
+  {
+    "id": "T14.7",
+    "name": "Menu link and 'outdoor only' dog rule are shown (Brew Loops)",
+    "result": "PASS",
+    "expected": "menu + restriction",
+    "actual": "Food · Café · Sourced Location Maadi — 23 Street 232, Maadi Pin taken from the place's public Google Maps listing. Open the Google Maps listing Source: Google Maps listing · checked 21 Oct 2026 Price EGP 200–400 per person × 1 = EGP 200–400 Transport: not included · Taxes and service: unknown Pets Pets allowed (Dog) Dogs in the outdoor seating only Source: Google Maps listing · checked 21 Oct 2026"
+  },
+  {
+    "id": "T14.8",
+    "name": "No page errors with sourced places",
     "result": "PASS",
     "expected": "none",
     "actual": "[]"

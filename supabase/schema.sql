@@ -91,6 +91,8 @@ create table if not exists public.places (
   coords_source       text,
   coords_checked_at   date,
   price_amount        numeric check (price_amount >= 0),
+  price_min           numeric check (price_min >= 0),       -- lower end of a listed range (price_amount = upper end)
+  price_open          boolean not null default false,       -- range like "E£2,000+" (no upper end listed)
   price_basis         text check (price_basis in ('per_person','per_booking','per_item','per_visit')),
   includes_transport  text not null default 'unknown' check (includes_transport in ('included','excluded','unknown')),
   includes_taxes      text not null default 'unknown' check (includes_taxes in ('included','excluded','unknown')),

@@ -108,7 +108,7 @@
       try {
         S.server = await new ST.ServerStore(CFG).init();
         S.server.onAuth(onAuthEvent);
-        try { S.places = await S.server.places(); } catch (e) { bootNotice(t("serverPlacesFailed")); }
+        try { S.places = await S.server.places(); S.realCatalog = S.places.some((p) => p.status !== "demo"); } catch (e) { bootNotice(t("serverPlacesFailed")); }
         if (S.server.signedIn) await useServer(); else localize();
       } catch (e) { S.server = null; bootNotice(t("serverUnreachable")); }
     } else {
@@ -319,7 +319,7 @@
       if (opts && opts.expand === "any") c.where = { mode: "any" };
       if (opts && opts.radius && c.where.mode === "device") c.where.radiusKm = opts.radius;
       const ctx = { excluded: excludedSet(), groupSignals: S.groupTrip ? S.groupSignals : {} };
-      const r = E.search(S.places, c, ctx);
+      const r = E.search(searchPool(), c, ctx);
       S.results = Object.assign(r, { c, text, expandedFrom: opts && opts.expandedFrom });
       S.lastConstraints = c;
       if (!(opts && opts.stay)) go("matches");
@@ -331,8 +331,12 @@
   }
 
   /* ---------------- results ---------------- */
+  // once real (sourced or verified) places exist, the fictional demo records stay out of results
+  function searchPool() { if (!S.realCatalog) return S.places; const real = S.places.filter((p) => p.status !== "demo"); return real.length ? real : S.places; }
   function costLine(cost) {
     if (!cost) return t("priceUnknown");
+    if (cost.perPerson && cost.open) return t("costPPOpen", { unit: egp(cost.unit), n: num(cost.people), total: egp(cost.total) });
+    if (cost.perPerson && cost.min !== null) return t("costPPRange", { min: egp(cost.min), unit: num(cost.unit), n: num(cost.people), minTotal: egp(cost.minTotal), total: num(cost.total) });
     if (cost.perPerson) return t("costPP", { unit: egp(cost.unit), n: num(cost.people), total: egp(cost.total) });
     return t("costFixed", { unit: egp(cost.unit), basis: t("basis_" + cost.basis) });
   }
@@ -351,7 +355,7 @@
       case "pets_ok": return t("req_pets_ok", { v: t(v === "other" ? "otherPet" : v) });
       case "wheelchair_ok": return t("req_wheel_ok");
       case "access_ok": return t("req_access_ok", { v: t("need_" + v) });
-      case "pets_unconfirmed": return t(v === "claimed" ? "unk_pets_claimed" : "unk_pets");
+      case "pets_unconfirmed": return t({ type: "unk_pets_type", claimed: "unk_pets_claimed" }[v] || "unk_pets");
       case "wheelchair_unconfirmed": return t("unk_wheel", { list: v.map((k) => t(k)).join(S.lang === "ar" ? "، " : ", ") });
       case "access_unconfirmed": return t(x.claimed ? "unk_access_claimed" : "unk_access", { v: t("need_" + v) });
       case "price_unknown": return t("unk_price");
@@ -432,7 +436,9 @@
     let html = `<div class="query">${r.text ? `<q dir="auto">${esc(r.text)}</q>` : `<b>${esc(t("searchNoText"))}</b>`}<div class="intent" aria-label="${esc(t("usedConstraints"))}">${constraintChips(c).map((x) => `<span>${esc(x)}</span>`).join("")}</div></div>`;
     html += c.conflicts.map((x) => `<p class="conflict">${esc(conflictText(x))}</p>`).join("");
     if (S.groupTrip) { const g = S.trips.find((x) => x.id === S.groupTrip); html += `<div class="notice" role="note"><b>${esc(t("groupContext"))}</b>${esc(t("groupContextBody", { place: g ? pn(byId(g.placeId) || { id: "" }) : "" }))} <button class="inline-btn" data-action="endGroup">${esc(t("endGroup"))}</button></div>`; }
-    if (S.places.some((p) => p.status === "demo")) html += `<p class="demo-banner">${esc(t(S.places.every((p) => p.status === "demo") ? "demoAll" : "demoSome"))}</p>`;
+    const pool = searchPool();
+    if (pool.some((p) => p.status === "demo")) html += `<p class="demo-banner">${esc(t(pool.every((p) => p.status === "demo") ? "demoAll" : "demoSome"))}</p>`;
+    else if (pool.some((p) => p.status === "sourced")) html += `<p class="notice">${esc(t("sourcedNote"))}</p>`;
     if (c.where.mode === "device") html += `<p class="engine">${esc(t("radiusNote", { n: num(r.excludedCounts.no_coords || 0) }))}</p>`;
     html += `<p class="engine">${esc(t("engineNote"))}</p>`;
     html += `<div class="group-h"><h2>${esc(t("confirmedTitle", { n: num(r.confirmed.length) }))}</h2></div>`;
@@ -477,7 +483,8 @@
       <div class="facts">
         <section class="fact"><h3>${esc(t("fLocation"))}</h3>
           <p>${esc(an(p.area))}${p.address ? " — " + esc(loc(p.address)) : ""}</p>
-          <p>${canNavigate(p) ? esc(t("coordsVerified")) : esc(t("coordsUnverified"))}</p>
+          <p>${canNavigate(p) ? esc(t({ verified: "coordsVerified" }[p.status] || "coordsListed")) : esc(t("coordsUnverified"))}</p>
+          ${!demo && ct.mapUrl && safeUrl(ct.mapUrl) ? `<p><a href="${esc(safeUrl(ct.mapUrl))}" target="_blank" rel="noopener noreferrer">${esc(t("openListing"))}</a></p>` : ""}
           ${p.coords ? `<p class="src">${esc(srcLine(p.coords.source, p.coords.checked))}</p>` : ""}</section>
         <section class="fact"><h3>${esc(t("fPrice"))}</h3>
           <p>${esc(costLine(ev.cost))}</p><p>${esc(includesLine(p))}</p>${demo ? `<p class="src">${esc(t("demoPrice"))}</p>` : ""}</section>
@@ -489,7 +496,7 @@
           <ul class="reqs">
             <li><span class="st" aria-hidden="true">•</span><span>${esc(t("wc_entrance"))}: ${esc(w.stepFree === true ? t("yes") : w.ramp === true ? t("rampOnly") : triState(w.stepFree))}</span></li>
             <li><span class="st" aria-hidden="true">•</span><span>${esc(t("wc_interior"))}: ${esc(triState(w.interior))}</span></li>
-            <li><span class="st" aria-hidden="true">•</span><span>${esc(t("wc_level"))}: ${esc(w.groundFloor === true ? t("groundFloor") : w.lift === true ? t("liftYes") : w.groundFloor === false && w.lift === false ? t("no") : t("unknown"))}</span></li>
+            <li><span class="st" aria-hidden="true">•</span><span>${esc(t("wc_level"))}: ${esc(w.groundFloor === true ? t("groundFloor") : w.lift === true ? t("liftYes") : w.reachable === true ? t("reachableYes") : w.groundFloor === false && w.lift === false ? t("no") : t("unknown"))}</span></li>
             <li><span class="st" aria-hidden="true">•</span><span>${esc(t("wc_toilet"))}: ${esc(triState(w.toilet))}</span></li>
           </ul>
           ${w.restrictions ? `<p>${esc(loc(w.restrictions))}</p>` : ""}

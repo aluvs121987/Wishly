@@ -63,7 +63,7 @@ const verified = { id: "v1", status: "verified", name: { en: "Evidence Café", a
 check("verified Maadi pet café with evidence → confirmed", r.confirmed.length === 1 && r.confirmed[0].place.id === "v1", r.confirmed.map((x) => x.place.id));
 check("its group cost is 300 × 2 = 600", r.confirmed[0] && r.confirmed[0].ev.cost.total === 600, r.confirmed[0] && r.confirmed[0].ev.cost);
 ({ r } = run("Pet-friendly café", { areaSet: true, area: "Maadi", petSet: true, petAccompanying: true, petType: "cat" }, {}, { places: [verified] }));
-check("dog-only place is unsuitable for a cat", r.confirmed.length === 0 && r.ask.length === 0 && r.excludedCounts.pet_type === 1, r.excludedCounts);
+check("'dogs allowed' place says nothing about cats → Ask, not excluded", r.confirmed.length === 0 && r.ask.length === 1, { a: r.ask.length, x: r.excludedCounts });
 
 // Wheelchair three states ----------------------------------------------------------
 const wcBase = Object.assign({}, verified, { id: "w", accessSource: "site visit", accessChecked: "2026-10-18" });
@@ -71,6 +71,10 @@ const wcRun = (w, extra) => E.evaluatePlace(Object.assign({}, wcBase, { wheelcha
 check("ramp alone is not enough (interior, level, toilet unknown)", wcRun({ ramp: true }).status === "ask", wcRun({ ramp: true }).unknowns);
 check("all wheelchair facts true + evidence → confirmed", wcRun({ stepFree: true, interior: true, groundFloor: true, toilet: true }).status === "confirmed");
 check("interior not usable → excluded", wcRun({ stepFree: true, interior: false, groundFloor: true, toilet: true }).status === "excluded");
+check("listed accessible entrance + seating (reachable) answers the level question", wcRun({ stepFree: true, interior: true, reachable: true, toilet: true }).status === "confirmed");
+check("Google-style entrance=false → excluded", wcRun({ stepFree: false, interior: true, toilet: true }).status === "excluded");
+{ const rg = E.groupCost({ price: { amount: 200, min: 1, basis: "per_person" } }, 3);
+  check("price range keeps both ends (1–200 × 3 = 3–600)", rg.min === 1 && rg.minTotal === 3 && rg.total === 600, rg); }
 check("upper floor without lift → excluded", wcRun({ stepFree: true, interior: true, groundFloor: false, lift: false, toilet: true }).status === "excluded");
 check("all true but demo record → needs confirmation", wcRun({ stepFree: true, interior: true, groundFloor: true, toilet: true }, { status: "demo" }).status === "ask");
 check("demo 'steps at entrance' → excluded (a no is respected)", wcRun({ stepFree: false }, { status: "demo" }).status === "excluded");

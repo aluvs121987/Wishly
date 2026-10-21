@@ -11,7 +11,7 @@
   const now = () => new Date().toISOString();
   const places = () => window.W.DEMO_PLACES.map((p) => ({ id: p.id, record_status: p.status, name_en: p.name.en, name_ar: p.name.ar, category: p.cat, kind: p.kind, area: p.area,
     price_amount: p.price.amount, price_basis: p.price.basis, includes_transport: p.includes.transport, includes_taxes: p.includes.taxes, pet_policy: p.pets.policy, pet_types: p.pets.types,
-    wheelchair: { step_free: p.wheelchair.stepFree, accessible_toilet: p.wheelchair.toilet }, access_features: p.access, tags: p.tags, contacts: {}, bank_offers: [], lat: null, lng: null }));
+    wheelchair: { step_free: p.wheelchair.stepFree, accessible_toilet: p.wheelchair.toilet }, access_features: p.access, tags: p.tags, contacts: {}, bank_offers: [], lat: null, lng: null })).concat(window.__extraPlaces || []);
   let listeners = [];
   let session = JSON.parse(localStorage.getItem("__mocksession") || "null");
   const setSession = (s, ev) => { session = s; if (s) localStorage.setItem("__mocksession", JSON.stringify(s)); else localStorage.removeItem("__mocksession"); listeners.forEach((cb) => cb(ev, s)); };

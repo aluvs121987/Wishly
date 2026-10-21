@@ -76,7 +76,7 @@ So claude.ai storage is used only for private, single-person data. Supabase supp
 | 12 | Keyboard, labels, focus, mobile layout, no dead buttons | **Tested** (automated) | T10. A screen-reader pass was not executed |
 | 12 | Existing features: home, six categories, Just Wish, profile, pets, budget, bank, visual settings, picture wish, voice | **Tested** (smoke) | Voice depends on the browser and is blocked inside the artifact frame |
 | 13 | Database model and authorization | **Tested** | 91 checks on PostgreSQL 16 |
-| — | Real, verified venue data | **Not implemented** | No real venue data is available here. Add checked places with `supabase/add_verified_place_template.sql` |
+| — | Real venue data | **Partly done (sourced, not verified)** | 65 cafés and restaurants (Maadi, New Cairo, Zamalek, Downtown, Dokki) imported on 21 Oct 2026 from their public Google Maps listings: pin, address, phone (52), menu link (11), dog policy (13), wheelchair facts (30), price range. Status "Sourced", nobody has called them. Demo places are hidden from results once real places load. T14.1–T14.8. Data: `data/places_google_2026-10-21.json`, `supabase/real_places.sql` |
 | — | AI ranking | **Not implemented**, on purpose | V3's AI ranking stays off so results are reproducible and every exclusion can be explained |
 | — | Live fares, bookings, ride handoff confirmation | **Not implemented** | The app opens Uber and Maps and never claims a booking |
 | — | Self-service deletion of the sign-in itself | **Not implemented** | Delete my data removes all Wishly data; the project owner removes the login (SETUP.md §11) |
@@ -84,7 +84,7 @@ So claude.ai storage is used only for private, single-person data. Supabase supp
 ## Remaining defects and risks
 
 1. **The Supabase client calls have not run against a real project.** They follow the supabase-js 2.45 API and pass against the stand-in client. Run SETUP.md's two-person check right after setup and fix anything that fails before the 22nd.
-2. **The demo catalog can't confirm pet or wheelchair results, and radius searches return nothing until real coordinates exist.** This is correct behaviour, but in a live demo it can look empty. Adding 3–5 checked Maadi places fixes it.
+2. **Real places are "Sourced" from Google Maps listings, not phone-checked.** A listing that says "Dogs allowed" says nothing about cats (those go to Ask), and Google's three accessibility facts (entrance, seating, restroom) are treated as the full wheelchair check only when all three are listed.
 3. **The sign-in session is kept in localStorage** (Supabase's default for apps without their own server). Provider tokens are removed. For stricter security, move to cookie sessions (see SETUP.md).
 4. **Inside the claude.ai artifact the frame blocks** device location, the microphone, the share sheet, and often `tel:` / `sms:` links. Phone numbers are always shown as text. Host on your own HTTPS site to use all of these.
 5. **Travel times from the profile area are rough estimates** between district centres. They are labelled "rough estimate" and never used to filter.
